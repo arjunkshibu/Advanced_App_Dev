@@ -8,26 +8,30 @@ const Home = lazy(() => import('./pages/Shared/Home') )
 const Courses = lazy(() => import('./pages/Shared/Courses') )
 
 import Loader from './components/Loader';
-import Login from './pages/Shared/Login';
-import Register from './pages/Shared/Register';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminLayout from './layouts/AdminLayout';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <TopBar />
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route element={<WebLayout />}>
-              <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
               <Route path="/courses" element={<Courses/>} />
             </Route>
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
            {/* <Route path="/*" element=*/}
+           <Route element={<AdminLayout />}>
 
+           <Route path="/admindash" element={<AdminDashboard />} />
+          </Route>
           </Routes>
         </Suspense>
       </BrowserRouter>

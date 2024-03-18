@@ -6,7 +6,6 @@ import Footer from '../pages/Shared/Footer'
 const WebLayout = () => {
   return (
     <>
-    <TopBar/>
     <div>
         <Outlet/>
     </div>
