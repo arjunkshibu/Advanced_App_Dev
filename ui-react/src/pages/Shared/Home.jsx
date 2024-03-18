@@ -1,6 +1,6 @@
 import React from "react";
-import TopBar from "./TopBar";
-import Footer from "./Footer";
+import TopBar from "../../components/User/TopBar";
+import Footer from "../../components/User/Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

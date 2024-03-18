@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-const TopBar = lazy(() => import('./pages/Shared/TopBar'))
+const TopBar = lazy(() => import('./components/User/TopBar'))
 const WebLayout = lazy(() => import('./layouts/WebLayout'))
 const Contact = lazy(() => import('./pages/Shared/Contact'));
 const About = lazy(() => import('./pages/Shared/About'));
@@ -12,6 +12,9 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminLayout from './layouts/AdminLayout';
+import UsersTable from './pages/Admin/AdminUsers';
+import AdminCourses from './pages/Admin/AdminCourses';
+import AdminPayments from './pages/Admin/AdminPayments';
 
 function App() {
   return (
@@ -30,7 +33,13 @@ function App() {
            {/* <Route path="/*" element=*/}
            <Route element={<AdminLayout />}>
 
-           <Route path="/admindash" element={<AdminDashboard />} />
+           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+           <Route path="/admin/courses" element={<AdminCourses />} />
+           <Route path="/admin/users" element={<UsersTable />} />
+           <Route path="/admin/payments" element={<AdminPayments />} />
+
+
+
           </Route>
           </Routes>
         </Suspense>

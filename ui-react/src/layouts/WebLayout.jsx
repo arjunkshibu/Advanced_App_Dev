@@ -1,7 +1,7 @@
 import React from 'react'
-import TopBar from '../pages/Shared/TopBar'
+import TopBar from '../components/User/TopBar'
 import { Outlet } from 'react-router-dom'
-import Footer from '../pages/Shared/Footer'
+import Footer from '../components/User/Footer'
 
 const WebLayout = () => {
   return (
