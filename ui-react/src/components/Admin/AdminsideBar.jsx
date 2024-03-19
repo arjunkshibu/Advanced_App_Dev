@@ -53,9 +53,11 @@ const Adminsidebar = () => {
           >
           Profiles
         </NavLink>
-        <button className="bg-red-500 hover:bg-red-600 absolute bottom-0 p-2">
+        <NavLink to="/">
+        <button className="bg-red-500 hover:bg-red-600 text-center flex items-center justify-center p-2">
           Logout
         </button>
+        </NavLink>
       </div>
     </div>
   );

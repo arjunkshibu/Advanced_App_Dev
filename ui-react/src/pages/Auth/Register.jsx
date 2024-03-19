@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 
 const Register = () => {
+  const navigate=useNavigate();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleRegister = () => {
+    if (fullName.trim() === "") {
+      alert("Please enter your full name.");
+      return;
+    }
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (!phone.match(/^\d{10}$/)) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+
+    console.log("Registration successful!");
+    navigate("/")
+  };
+
   return (
     <div className="flex items-center gap-0 flex-row justify-center h-screen font-Montserrat">
       <div className="flex flex-col items-center justify-evenly  custom-box-shadow min-h-[35rem] min-w-[20rem] md:min-h-[45rem] md:min-w-[27rem]">
@@ -13,6 +43,8 @@ const Register = () => {
               <input
                 className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white text-black md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2 "
                 placeholder="Type your full name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </label>
           </fieldset>
@@ -22,6 +54,9 @@ const Register = () => {
               <input
                 className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
                 placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
           </fieldset>
@@ -31,6 +66,8 @@ const Register = () => {
               <input
                 className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
                 placeholder="Phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </label>
           </fieldset>
@@ -38,14 +75,17 @@ const Register = () => {
             <legend className="text-black">Password</legend>
             <label className="text-black">
               <input
+                type="password"
                 className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
           </fieldset>
         </div>
         <div className="flex flex-col items-center gap-3">
-          <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700">
+          <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700" onClick={handleRegister}>
             Register
           </button>
           <p className="font-normal">Register with social accounts</p>

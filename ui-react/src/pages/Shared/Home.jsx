@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slick from "./Slick";
+import { Link } from "react-router-dom";
+import Register from '../Auth/Register';
 
 const data = [
   {
@@ -47,9 +49,11 @@ const Home = () => {
               Discover courses tailored to your present and future needs. Sign
               up and Start your educational journey with us.
             </p>
+            <Link to="/Register">
             <button className="md:py-2 md:px-3 py-1 px-2 text-sm md:text-lg border text-black bg-white hover:bg-slate-300 ">
               EXPLORE
             </button>
+            </Link>
           </div>
           <Slick/>
         </section>
