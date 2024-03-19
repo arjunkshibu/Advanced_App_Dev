@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SocialIcon } from "react-social-icons";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert('Please enter your email and password.');
+      return;
+    }
+
+    if (email === 'administrator@coursehunt.com' && password === 'admin') {
+      navigate('/admin/dashboard');
+      return;
+    }
+    else{
+      navigate('/user/dashboard')
+    }
+
+  };
   return (
     <div className="flex items-center gap-0 flex-row justify-center h-screen font-Montserrat">
     <div className="flex flex-col items-center justify-evenly  custom-box-shadow min-h-[35rem] min-w-[20rem] md:min-h-[45rem] md:min-w-[27rem]">
@@ -15,6 +38,9 @@ const Login = () => {
             <input
               className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
               placeholder="Email"
+              value={email}
+              autoComplete='on'
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
         </fieldset>
@@ -25,6 +51,9 @@ const Login = () => {
             <input
               className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
               placeholder="Password"
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
         </fieldset>
@@ -32,10 +61,10 @@ const Login = () => {
       </div>
       <div className="flex flex-col items-center gap-3">
         
-        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700">
-          Register
+        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700" onClick={handleSubmit}>
+          Login
         </button>
-        <p className="text-sm md:text-base">Register with social accounts</p>
+        <p className="text-sm md:text-base">Login with social accounts</p>
         <div className="flex flex-row md:space-x-4 justify-center items-center space-x-2">
           <SocialIcon
             url="https://linkedin.com"

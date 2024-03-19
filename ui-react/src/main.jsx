@@ -2,10 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './assets/css/main.css'
-import AdminProfile from './pages/Admin/AdminProfile.jsx'
-import LogoNavBar from './components/User/LogoNavBar.jsx'
-import UserTopBar from './components/User/UserTopBar.jsx'
-import UserLanding from './pages/User/UserLanding.jsx'
+import page404 from './pages/Shared/Error404.jsx';
+import Error404 from './pages/Shared/Error404.jsx';
+
 
 
 

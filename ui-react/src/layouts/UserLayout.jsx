@@ -6,13 +6,15 @@ import UserSidebar from '../components/User/UserSideBar';
 
 const UserLayout = () => {
     return (
-        <div className='flex h-screen overflow-hidden'>
-        <div className="w-full bg-gray-200">
+        <div className='flex h-screen'>
+          <div className="w-full bg-gray-200 flex flex-col">
             <UserTopBar />
-            <UserSidebar />
-            <Outlet />
-          </div>
-          <div className="flex flex-1">
+            <div className="flex flex-1 overflow-x-hidden">
+              <UserSidebar />
+              <div className="overflow-y-auto flex flex-1">
+                <Outlet />
+              </div>
+            </div>
           </div>
         </div>
       );

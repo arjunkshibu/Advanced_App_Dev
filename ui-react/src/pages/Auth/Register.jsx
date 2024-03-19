@@ -29,7 +29,7 @@ const Register = () => {
     }
 
     console.log("Registration successful!");
-    navigate("/")
+    navigate("/login")
   };
 
   return (

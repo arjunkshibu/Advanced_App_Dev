@@ -1,17 +1,19 @@
 import React from "react";
 
 const About = () => {
+  document.body.style.overflow = "hidden";
+
   return (
-    <div className="h-screen">
-      <div className="pt-[100px] h-screen bg-blurBack">
+    <div className="h-screen   items-center bg-blurBack flex justify-center overflow-hidden">
+      <div className="pt-[100px] h-full absolute top-1/4 overflow-hidden ">
         <section>
           <h1 className="md:text-5xl text-white flex justify-center font-Montserrat text-3xl text-wrap">
             About Us
           </h1>
           <p className="md:text-xl text-balance text-center font-Montserrat text-white pt-10">
-            <h2>Welcome to Our Company</h2>
+            <h2>Welcome to CourseHunt</h2>
             <p>
-              At [Company Name], we are dedicated to [describe the main goal or
+              At CourseHunt, we are dedicated to [describe the main goal or
               mission of your company]. Founded in [year], we have been serving
               our customers with [describe the products or services your company
               offers] for [number] years.
@@ -31,6 +33,9 @@ const About = () => {
               [quality/innovative/etc.] solutions that [describe how your
               products/services benefit customers or solve their problems].
             </p>
+            <button className="">
+              BACK
+            </button>
           </p>
 
         </section>

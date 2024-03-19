@@ -1,24 +1,30 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-const TopBar = lazy(() => import("./components/User/TopBar"));
 const WebLayout = lazy(() => import("./layouts/WebLayout"));
 const Contact = lazy(() => import("./pages/Shared/Contact"));
 const About = lazy(() => import("./pages/Shared/About"));
 const Home = lazy(() => import("./pages/Shared/Home"));
 const Courses = lazy(() => import("./pages/Shared/Courses"));
 
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
+const UsersTable = lazy(() => import("./pages/Admin/AdminUsers"));
+const AdminCourses = lazy(() => import("./pages/Admin/AdminCourses"));
+const AdminPayments = lazy(() => import("./pages/Admin/AdminPayments"));
+const AdminProfile = lazy(() => import("./pages/Admin/AdminProfile"));
+const UserLayout = lazy(() => import("./layouts/UserLayout"));
+const UserLanding = lazy(() => import("./pages/User/UserLanding"));
+const UserDashboard = lazy(() => import("./pages/User/UserDashboard"));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Register = lazy(() => import("./pages/Auth/Register"));
+
 import Loader from "./components/Loader";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import AdminLayout from "./layouts/AdminLayout";
-import UsersTable from "./pages/Admin/AdminUsers";
-import AdminCourses from "./pages/Admin/AdminCourses";
-import AdminPayments from "./pages/Admin/AdminPayments";
-import AdminProfile from "./pages/Admin/AdminProfile";
-import UserLayout from "./layouts/UserLayout";
-import UserLanding from "./pages/User/UserLanding";
-import UserDashboard from "./pages/User/UserDashboard";
+import Error404 from "./pages/Shared/Error404";
+import UserFavourites from "./pages/User/UserFavourites";
+import UserProfile from "./pages/User/UserProfile";
+import Terms from "./pages/User/Terms";
+import Policy from "./pages/User/Policy";
+import Help from "./pages/User/Help";
 
 function App() {
   return (
@@ -29,9 +35,16 @@ function App() {
             <Route element={<WebLayout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-            </Route>
+              <Route path="/*" element={<Error404 />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/policy" element={<Policy />} />
+              <Route path="/help" element={<Help />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+
+
+
+            </Route>
             <Route path="/courses" element={<Courses />} />
             <Route path="/" element={<Home />} />
 
@@ -44,6 +57,10 @@ function App() {
             </Route>
             <Route element={<UserLayout />}>
             <Route path="/user/dashboard" element={<UserDashboard />} />
+            <Route path="/user/favourites" element={<UserFavourites />} />
+            <Route path="/user/profile" element={<UserProfile />} />
+
+
 
 
             </Route>

@@ -7,14 +7,14 @@ function Slick() {
   const settings = {
     accessibility: true,
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1500, // Breakpoint for screens larger than 1500px
+        breakpoint: 1500, 
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -23,7 +23,7 @@ function Slick() {
         }
       },
       {
-        breakpoint: 1024, // Breakpoint for screens larger than 1024px
+        breakpoint: 1024, 
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -32,7 +32,7 @@ function Slick() {
         }
       },
       {
-        breakpoint: 768, // Breakpoint for screens larger than 768px
+        breakpoint: 768, 
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -41,7 +41,7 @@ function Slick() {
         }
       },
       {
-        breakpoint: 480, // Breakpoint for screens larger than 480px
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -52,8 +52,8 @@ function Slick() {
     ]
   };
   return (
-    <div className='w-[65%] m-auto md:w-[65%] z-40'>
-      <div className="text-white md:text-4xl pb-6">
+    <div className='w-[65%] m-auto md:w-[65%] pb-24 z-40'>
+      <div className="text-white md:text-4xl pb-12">
         Latest on Course Hunt &#x21D2;
       </div>
 <Slider {...settings}>
