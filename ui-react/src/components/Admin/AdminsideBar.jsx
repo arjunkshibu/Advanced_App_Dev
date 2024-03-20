@@ -16,7 +16,7 @@ const Adminsidebar = () => {
         <NavLink
           to="/admin/dashboard"
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-darl justify-center h-20 ${
-            isDashboardActive ? "bg-green-500" : ""
+            isDashboardActive ? "text-green-500 hover:text-white" : ""
           }`}
         >
           Dashboard
@@ -24,7 +24,7 @@ const Adminsidebar = () => {
         <NavLink
           to="/admin/courses"
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-darl justify-center h-20 ${
-            isCoursesActive ? "bg-green-500" : ""
+            isCoursesActive ? "text-green-500 hover:text-white" : ""
           }`}
         >
           Courses
@@ -32,7 +32,7 @@ const Adminsidebar = () => {
         <NavLink
           to="/admin/users"
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-darl justify-center h-20 ${
-            isUsersActive ? "bg-green-500" : ""
+            isUsersActive ? "text-green-500 hover:text-white" : ""
           }`}
         >
           Users
@@ -40,7 +40,7 @@ const Adminsidebar = () => {
         <NavLink
           to="/admin/payments"
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-darl justify-center h-20 ${
-            isPaymentsActive ? "bg-green-500" : ""
+            isPaymentsActive ? "text-green-500 hover:text-white" : ""
           }`}
         >
           Payments
@@ -48,7 +48,7 @@ const Adminsidebar = () => {
         <NavLink
           to="/admin/profile"
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-darl justify-center h-20 ${
-            isProfilesActive ? "bg-green-500" : ""
+            isProfilesActive ? "text-green-500 hover:text-white" : ""
           }`}
           >
           Profiles

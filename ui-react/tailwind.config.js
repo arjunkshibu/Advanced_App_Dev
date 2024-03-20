@@ -8,7 +8,8 @@ export default {
         'blurBack2':"url('./src/assets/img/peakpx2.jpg)",
         'bg-girl' : "url('./src/assets/img/picture-young-woman-standing-pointing-up2.jpg')",
         'logo' : "url('./src/assets/img/logotext2.png')",
-        'logo2' : "url('./src/assets/img/logotext.png)"
+        'logo2' : "url('./src/assets/img/logotext.png)",
+        'bg-gold' : "url('./src/assets/img/gold.jpg')"
       },
       fontFamily:{
         'Montserrat': ["Montserrat, sans"]

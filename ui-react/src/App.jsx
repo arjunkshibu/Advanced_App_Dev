@@ -25,6 +25,8 @@ import UserProfile from "./pages/User/UserProfile";
 import Terms from "./pages/User/Terms";
 import Policy from "./pages/User/Policy";
 import Help from "./pages/User/Help";
+import UserPayments from "./pages/User/UserPayments";
+import UserSubscriptions from "./pages/User/UserSubscriptions";
 
 function App() {
   return (
@@ -39,11 +41,8 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/policy" element={<Policy />} />
               <Route path="/help" element={<Help />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-
-
-
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
             </Route>
             <Route path="/courses" element={<Courses />} />
             <Route path="/" element={<Home />} />
@@ -56,16 +55,15 @@ function App() {
               <Route path="/admin/profile" element={<AdminProfile />} />
             </Route>
             <Route element={<UserLayout />}>
-            <Route path="/user/dashboard" element={<UserDashboard />} />
-            <Route path="/user/favourites" element={<UserFavourites />} />
-            <Route path="/user/profile" element={<UserProfile />} />
-
-
-
+              <Route path="/user/dashboard" element={<UserDashboard />} />
+              <Route path="/user/favourites" element={<UserFavourites />} />
+              <Route path="/user/profile" element={<UserProfile />} />
+              <Route path="/user/profile" element={<UserProfile />} />
+              <Route path="/user/payments" element={<UserPayments />} />
+              <Route path="/user/subscriptions" element={<UserSubscriptions />} />
 
             </Route>
             <Route path="/user/landing" element={<UserLanding />} />
-
           </Routes>
         </Suspense>
       </BrowserRouter>

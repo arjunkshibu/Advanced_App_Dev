@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Slick() {
   const settings = {
@@ -52,7 +53,7 @@ function Slick() {
     ]
   };
   return (
-    <div className='w-[65%] m-auto md:w-[65%] pb-24 z-40'>
+    <div className='w-[65%] m-auto md:w-[65%] shadow-2xl pb-24 z-40'>
       <div className="text-white md:text-4xl pb-12">
         Latest on Course Hunt &#x21D2;
       </div>
@@ -69,7 +70,9 @@ function Slick() {
               <p className="text-center text-[11px] md:text-base ">{d.review}</p>
             </div>
             <div className="flex justify-center items-center">
+              <NavLink to='/register'>
               <button className='bg-indigo-500 text-white md:text-lg text-sm px-6 py-1 hover:bg-indigo-800'>View More</button>
+              </NavLink>
               </div>
           </div>
         ))}

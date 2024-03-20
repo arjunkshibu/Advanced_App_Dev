@@ -37,11 +37,16 @@ const AdminCourses = () => {
   };
 
   const addCourse = () => {
-    const id = Math.max(...courses.map(course => course.id)) + 1;
+    let id;
+    if (courses.length === 0) {
+      id = 1;
+    } else {
+      id = Math.max(...courses.map(course => course.id)) + 1;
+    }
     const name = prompt('Enter course name:');
     const instructor = prompt('Enter instructor:');
     const duration = prompt('Enter duration:');
-
+  
     if (name && instructor && duration) {
       const newCourse = { id, name, instructor, duration };
       setCourses([...courses, newCourse]);

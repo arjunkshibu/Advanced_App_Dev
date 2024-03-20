@@ -76,7 +76,7 @@ function Slickv2() {
   
   return (
     <div className="w-full md:w-[65%] m-auto  z-20">
-      <div className="text-black md:text-4xl pb-6">Explore &#x21D2;</div>
+      <div className="text-black md:text-4xl pb-6">New courses &#x21D2;</div>
       <Slider {...settings}>
         {data.map((d) => (
           <div
@@ -103,8 +103,8 @@ function Slickv2() {
               </p>
             </div>
             <div className="flex justify-center items-center">
-              <button className="bg-indigo-500 text-white md:text-lg text-sm px-6 py-1 hover:bg-indigo-800">
-                View More
+              <button className="bg-indigo-900 text-white md:text-lg w-1/3 text-sm px-6 py-1 hover:bg-indigo-800">
+                $29.99
               </button>
             </div>
           </div>

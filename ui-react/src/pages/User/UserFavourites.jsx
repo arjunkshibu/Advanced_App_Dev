@@ -52,7 +52,7 @@ const UserFavourites = () => {
         </div>
         <div className='flex flex-row '>
         <div className='bg-green-700 mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Completed</h2>
+          <h2 className=''>Start</h2>
         </div>
         </div>
        </div>
@@ -64,7 +64,7 @@ const UserFavourites = () => {
         </div>
         <div className='flex flex-row '>
         <div className='bg-green-700 mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Completed</h2>
+          <h2 className=''>Start</h2>
         </div>
         </div>
        </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SocialIcon } from "react-social-icons";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 
@@ -39,7 +39,7 @@ const Login = () => {
               className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2"
               placeholder="Email"
               value={email}
-              autoComplete='on'
+              autoComplete
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
@@ -61,7 +61,7 @@ const Login = () => {
       </div>
       <div className="flex flex-col items-center gap-3">
         
-        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700" onClick={handleSubmit}>
+        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:px-5 md:py-3 hover:bg-green-600 hover:text-white" onClick={handleSubmit}>
           Login
         </button>
         <p className="text-sm md:text-base">Login with social accounts</p>
@@ -85,9 +85,11 @@ const Login = () => {
         <div className='text-xs md:text-base underline'>
           <p>Forgot password</p>
         </div>
+        <NavLink to="/register" >
         <div className='text-xs md:text-base'>
           <p>Don't have an account ?</p>
         </div>
+        </NavLink>
       </div>
     </div>
     </div>

@@ -9,9 +9,9 @@ const UserLayout = () => {
         <div className='flex h-screen'>
           <div className="w-full bg-gray-200 flex flex-col">
             <UserTopBar />
-            <div className="flex flex-1 overflow-x-hidden">
+            <div className="flex h-full">
               <UserSidebar />
-              <div className="overflow-y-auto flex flex-1">
+              <div className="overflow-y-auto">
                 <Outlet />
               </div>
             </div>

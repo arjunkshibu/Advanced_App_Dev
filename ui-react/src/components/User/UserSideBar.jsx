@@ -1,4 +1,4 @@
-import { BarChart2, Heart, Search, User, UserRound } from 'lucide-react';
+import { BadgeDollarSign, BarChart2, CreditCard, Heart, Search, User, UserRound } from 'lucide-react';
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import UserProfile from '../../pages/User/UserProfile';
@@ -8,14 +8,14 @@ const UserSidebar = () => {
 
   const isLandingActive = location.pathname === "/user/landing";
   const isDashboardActive = location.pathname === "/user/dashboard";
-  const isLink3Active = location.pathname === "/user/";
+  const isFavouritesActive = location.pathname === "/user/favourites";
   const isLink4Active = location.pathname === "/link4";
   const isLink5Active = location.pathname === "/link5";
 
   return (
-    <div className="h-full w-56 bg-gray-800 flex flex-col font-Montserrat items-center justify-center py-20 px-2">
+    <div className="h-full w-56 bg-gray-800  py-20 px-2">
       <div className="text-xl">
-        <ul className="space-y-16">
+        <ul className="space-y-16 flex flex-col items-center ">
           <li>
             <NavLink
               to="/user/landing"
@@ -34,10 +34,26 @@ const UserSidebar = () => {
           </li>
           <li>
             <NavLink
+              to="/user/subscriptions"
+              className={`text-white hover:text-green-500 ${isFavouritesActive ? 'text-green-500 hover:text-green-500 ' : ''}`}
+            >
+              <BadgeDollarSign size={20} className='mr-2  inline-block' /> Subscriptions
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/user/favourites"
-              className={`text-white hover:text-green-500 ${isLink3Active ? 'text-green-500 hover:text-green-500 ' : ''}`}
+              className={`text-white hover:text-green-500 ${isFavouritesActive ? 'text-green-500 hover:text-green-500 ' : ''}`}
             >
               <Heart size={20} className='mr-2  inline-block' /> Favourites
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/user/payments"
+              className={`text-white hover:text-green-500 ${isFavouritesActive ? 'text-green-500 hover:text-green-500 ' : ''}`}
+            >
+              <CreditCard size={20} className='mr-2  inline-block' /> Payments
             </NavLink>
           </li>
           <li>
