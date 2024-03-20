@@ -41,7 +41,7 @@ const Home = () => {
       <div className=" bg-blurBack bg-fixed font-Montserrat overflow-x-hidden">
         <TopBar />
         <section className="flex flex-col items-center justify-center h-screen overflow-hidden">
-          <div className="flex flex-col items-center justify-center h-full md:gap-11 gap-4">
+          <div className="flex flex-col items-center justify-center h-full  gap-4">
             <h1 className="md:text-7xl text-white text-center font-Montserrat text-3xl md:text-wrap text-balance md:pt-16 pt-24">
               Explore Your Education Options!
             </h1>

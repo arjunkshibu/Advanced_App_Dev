@@ -20,6 +20,7 @@ const TopBar = () => {
           </div>
       <div className={`md:flex md:justify-end bg-black md:bg-none bg-opacity-25 md:bg-opacity-0 md:text-white md:pr-9 md:pt-7 ${isOpen ? '' : 'hidden'}`}>
         <div className='flex flex-col gap-y-4 items-center md:space-x-12 md:flex-row md:text-xl text-sm'>
+        <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
           <NavLink to="/login">

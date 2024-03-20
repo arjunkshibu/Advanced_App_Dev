@@ -8,7 +8,7 @@ const UserTopBar = () => {
         <img src={logo} alt="Logo" className="h-8" />
       </div>
       
-      <div className="text-black font-semibold text-lg">Username</div>
+      <div className="text-black font-semibold text-lg">Gijendra</div>
     </nav>
   );
 };
