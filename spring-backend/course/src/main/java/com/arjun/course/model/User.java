@@ -16,25 +16,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-@Entity
-@Table(name="c_user")
+import lombok.NoArgsConstructor;
 @Data
 @Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "cr_user")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uid;
+    private Long uid;
     private String name;
     private String email;
-    private String phone;
     private String password;
-    
 
-     @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user")
@@ -69,5 +70,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

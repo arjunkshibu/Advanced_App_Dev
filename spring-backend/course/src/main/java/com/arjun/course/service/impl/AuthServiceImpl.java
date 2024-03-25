@@ -22,7 +22,6 @@ import com.arjun.course.service.AuthService;
 import com.arjun.course.util.JwtToken;
 
 import lombok.RequiredArgsConstructor;
-
 @Service
 @RequiredArgsConstructor
 @SuppressWarnings("null")
@@ -43,7 +42,6 @@ public class AuthServiceImpl implements AuthService {
         var user = User.builder()
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
-                .phone(registerRequest.getPhone())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.User)
                 .build();
@@ -63,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
         saveUserToken(user, accessToken);
         return LoginResponse.builder().accessToken(accessToken).build();
     }
-
+    
     private void saveUserToken(User user, String accessToken) {
         var token = Token.builder().user(user).token(accessToken).expired(false).revoked(false).build();
         tokenRepository.save(token);
