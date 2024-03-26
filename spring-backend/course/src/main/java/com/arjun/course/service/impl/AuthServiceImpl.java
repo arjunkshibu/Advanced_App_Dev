@@ -42,6 +42,7 @@ public class AuthServiceImpl implements AuthService {
         var user = User.builder()
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
+                .phone(registerRequest.getPhone())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.User)
                 .build();
@@ -76,5 +77,23 @@ public class AuthServiceImpl implements AuthService {
             token.setRevoked(true);
         });
         tokenRepository.saveAll(validUserTokens);
+    }
+
+    @Override
+    public String createAdmin() {
+        Optional<User> userExist = userRepository.findByEmail("admin@gmail.com");
+        if (userExist.isPresent()) {
+            return "User already exists with email id - admin@gmail.com";
+        }
+
+        var user = User.builder()
+                .name("Admin")
+                .email("admin@coursehunt.com")
+                .password(passwordEncoder.encode("coursehunt@123"))
+                .phone("1234567890")
+                .role(Role.Admin)
+                .build();
+        userRepository.save(user);
+        return "Admin registered successfully.";
     }
 }

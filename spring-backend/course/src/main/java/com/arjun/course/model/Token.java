@@ -43,4 +43,7 @@ public class Token {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_uid")
     private User user;
+    
+
+   
 }

@@ -33,13 +33,13 @@ public class User implements UserDetails {
     private Long uid;
     private String name;
     private String email;
+    private String phone;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+    
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
