@@ -7,6 +7,11 @@
     font-family: "Montserrat";
     src: url("../fonts/montserrat/Montserrat-Regular.ttf") format("woff2");
   }
+
+  @font-face {
+    font-family: "Scania";
+    src: url("../fonts/scania/ScaniaSansCYHeadline-Bold.ttf");
+  }
 }
 .loader {
   width: 120px;

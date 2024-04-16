@@ -3,9 +3,10 @@ package com.arjun.course.service.impl;
 import com.arjun.course.model.Courses;
 import com.arjun.course.repository.CoursesRepository;
 import com.arjun.course.service.CoursesService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CoursesServiceImpl implements CoursesService {
@@ -24,7 +25,12 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Override
     public Courses addCourse(Courses course) {
-        return coursesRepository.save(course);
+        Courses existingCourse = coursesRepository.findByCourseName(course.getCourseName());
+        if (existingCourse != null) {
+            return existingCourse;
+        } else {
+            return coursesRepository.save(course);
+        }
     }
 
     @Override
@@ -33,26 +39,12 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
-    public Courses updateCourse(Long courseId, Courses updatedCourse) {
-        Courses existingCourse = coursesRepository.findById(courseId).orElse(null);
-        if (existingCourse != null) {
-            existingCourse.setCourseName(updatedCourse.getCourseName());
-            existingCourse.setCourseInstructor(updatedCourse.getCourseInstructor());
-            existingCourse.setCourseDuration(updatedCourse.getCourseDuration());
-            existingCourse.setCoursePrice(updatedCourse.getCoursePrice());
-            existingCourse.setCourseDescription(updatedCourse.getCourseDescription());
-            return coursesRepository.save(existingCourse);
-        }
-        return null;
+    public Courses putCourses(Courses cs) {
+        return coursesRepository.save(cs);
     }
 
     @Override
-    public boolean deleteCourse(Long courseId) {
-        Courses existingCourse = coursesRepository.findById(courseId).orElse(null);
-        if (existingCourse != null) {
-            coursesRepository.delete(existingCourse);
-            return true;
-        }
-        return false;
+    public void deleteCourses(long cid) {
+        coursesRepository.deleteById(cid);
     }
 }

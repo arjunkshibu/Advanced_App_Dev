@@ -2,8 +2,14 @@ package com.arjun.course.controller;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.arjun.course.model.Courses;
 import com.arjun.course.service.CoursesService;
@@ -28,18 +34,13 @@ public class CoursesController {
         return courseService.addCourse(course);
     }
 
-    @PutMapping("/{id}")
-    public Courses updateCourse(@PathVariable Long id, @RequestBody Courses course) {
-        return courseService.updateCourse(id, course);
+    @PutMapping("/putcourses")
+    public Courses putCourses(@RequestParam long cid, @RequestBody Courses cs) {
+        cs.setCourseId(cid);
+        return courseService.putCourses(cs);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCourse(@PathVariable Long id) {
-        boolean deleted = courseService.deleteCourse(id);
-        if (deleted) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/deletecourses")
+    public void deleteCourses(@RequestParam long cid){
+      courseService.deleteCourses(cid);
     }
 }

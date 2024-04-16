@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arjun.course.model.Courses;
 import com.arjun.course.model.User;
 import com.arjun.course.service.UserService;
 
@@ -41,7 +43,6 @@ public class UserController {
 		 return userService.getUsers();
 	 }
 
-    // READ - Get a user by ID
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
         User user = userService.getUserById(userId);
@@ -52,26 +53,15 @@ public class UserController {
         }
     }
 
-    // UPDATE - Update a user by ID
-    @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
-        User user = userService.updateUser(userId, updatedUser);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/putUser")
+    public User putUser(@RequestParam long userId, @RequestBody User user) {
+        user.setUid(userId);
+        return userService.updateUser(user);
     }
 
-    // DELETE - Delete a user by ID
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
-        boolean deleted = userService.deleteUser(userId);
-        if (deleted) {
-            return ResponseEntity.ok("User deleted successfully");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/deleteUser")
+    public void deleteUser(@RequestParam long userId) {
+        userService.deleteUser(userId);
     }
     
 }

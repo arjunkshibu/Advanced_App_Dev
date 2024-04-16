@@ -1,5 +1,4 @@
 package com.arjun.course.config;
-
 import static io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
-
 @Configuration
 public class SwaggerConfig {
 
@@ -23,17 +21,17 @@ public class SwaggerConfig {
     public OpenAPI openAPI() {
             return new OpenAPI()
                             .info(new Info()
-                                            .title("Courses App")
-                                            .description("This is a sample API documentation")
+                                            .title("CourseHunt")
+                                            .description("future think sample API documentation")
                                             .version("1.0.0")
                                             .contact(new Contact()
                                                             .name("Arjun")
-                                                            .email("coursehunt@gmail.com")
+                                                            .email("727822tucs018@skct.edu.in")
                                                             .url("https://example.com"))
                                             .license(new License()
                                                             .name("Apache 2.0")
                                                             .url("https://www.apache.org/licenses/LICENSE-2.0.html")))
-                            .servers(List.of(new Server().url("http://localhost:7777")))
+                            .servers(List.of(new Server().url("http://localhost:8080")))
                             .addSecurityItem(new SecurityRequirement()
                                             .addList("bearerAuth"))
                             .components(new Components()

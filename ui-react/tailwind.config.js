@@ -9,10 +9,17 @@ export default {
         'bg-girl' : "url('./src/assets/img/picture-young-woman-standing-pointing-up2.jpg')",
         'logo' : "url('./src/assets/img/logotext2.png')",
         'logo2' : "url('./src/assets/img/logotext.png)",
-        'bg-gold' : "url('./src/assets/img/gold.jpg')"
+        'bg-gold' : "url('./src/assets/img/gold.jpg')",
+        'bg-girl_pc': "url('./src/assets/img/girl_pc.jpg')",
+        'bg-girl-w': "url('./src/assets/img/girl.jpg')",
+        'intel': "url('./src/assets/img/intel.png')",
+        'outdoor-girl': "url('./src/assets/img/outdoors.jpg')"
+
+
       },
       fontFamily:{
-        'Montserrat': ["Montserrat, sans"]
+        'Montserrat': ["Montserrat, sans"],
+        'Scania':["Scania"]
       },
       colors:{
         'syn-blue': '#39A7FF',
@@ -22,7 +29,9 @@ export default {
         'syn-darl':'#240A34',
         'syn-white':'#FBF6EE',
         'syn-lb':'#87C4FF',
-        'syn-lb-light':'#E0F4FF'
+        'syn-lb-light':'#E0F4FF',
+        'blacky':"#000000",
+        'mil-blue': "#0a2540"
       }
     },
   },

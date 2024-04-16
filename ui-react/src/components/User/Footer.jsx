@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-<div className="min-h-[60px] font-Montserrat absolute bottom-0 w-screen bg-black flex overflow-hidden flex-col md:flex-row md:items-center md:justify-between">
+<div className="min-h-[60px] font-Montserrat w-full bg-black flex overflow-hidden flex-col md:flex-row md:items-center md:justify-between">
       <div className="">
         <h4 className="text-white md:text-xl text-base flex justify-center">
           &copy; 2024 CourseHunt.Inc. All rights reserved.{" "}

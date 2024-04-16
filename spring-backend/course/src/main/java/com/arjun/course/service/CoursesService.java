@@ -7,6 +7,6 @@ public interface CoursesService {
     List<Courses> getAllCourses();
     Courses addCourse(Courses course);
     Courses getCourseById(Long courseId);
-    Courses updateCourse(Long courseId, Courses updatedCourse);
-    boolean deleteCourse(Long courseId);
+    Courses putCourses(Courses cs);
+    void deleteCourses(long cid);
 }

@@ -51,7 +51,7 @@ public class SecurityConfig {
 
         private static final String[] PublicEndPoints = {
                         "/api/auth/**",
-                        "/api/web/sites",
+                        "/api/web/sites/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html/**",
                         "/api/admin/default",
@@ -65,11 +65,12 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .authorizeHttpRequests(
                                                 authorize -> authorize.requestMatchers(PublicEndPoints).permitAll()
-                                                .requestMatchers("/api/courses/**","/users/**")
+                                                .requestMatchers("/api/courses/**","/users/**","/api/courses/put/**","/api/courses/**")
                                                 .hasRole(Admin.name())
                                                 .anyRequest()
                                                 .authenticated())
                                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
+                                
                                 .authenticationProvider(authenticationProvider)
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                                 .build();
@@ -77,14 +78,15 @@ public class SecurityConfig {
 
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
-                CorsConfiguration corsConfiguration = new CorsConfiguration();
-                // Note : Replace with server url/ip in production
-                corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-                corsConfiguration.setAllowedHeaders(Arrays.asList(AUTHORIZATION, CONTENT_TYPE));
-                corsConfiguration.setAllowedMethods(Arrays.asList(GET.name(), POST.name(), PUT.name(), PATCH.name(), DELETE.name(), HEAD.name(), OPTIONS.name()));
-                corsConfiguration.setAllowCredentials(true);
-                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                source.registerCorsConfiguration("/**", corsConfiguration);
-                return source;
+            CorsConfiguration corsConfiguration = new CorsConfiguration();
+            // Replace "http://localhost:your-swagger-ui-port" with the actual origin of your Swagger UI application
+            corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173/**")); 
+            corsConfiguration.setAllowedHeaders(Arrays.asList(AUTHORIZATION, CONTENT_TYPE));
+            corsConfiguration.setAllowedMethods(Arrays.asList(GET.name(), POST.name(), PUT.name(), PATCH.name(), DELETE.name(), HEAD.name(), OPTIONS.name()));
+            corsConfiguration.setAllowCredentials(true);
+            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+            source.registerCorsConfiguration("/**", corsConfiguration);
+            return source;
         }
+        
 }

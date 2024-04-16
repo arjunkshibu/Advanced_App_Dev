@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CoursesRepository extends JpaRepository<Courses, Long> {
-    // You can add custom query methods here if needed
+
+    Courses findByCourseName(String courseName);
+
 }
