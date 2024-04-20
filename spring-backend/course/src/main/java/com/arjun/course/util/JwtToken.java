@@ -45,6 +45,17 @@ public class JwtToken {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        // Extracting the role from UserDetails
+        String role = userDetails.getAuthorities().stream()
+                            .filter(authority -> authority.getAuthority().startsWith("ROLE_"))
+                            .map(authority -> authority.getAuthority().substring(5)) // Remove "ROLE_" prefix
+                            .findFirst()
+                            .orElse("");
+    
+        // Adding role to extraClaims
+        extraClaims.put("role", role);
+    
+        // Building the token with extraClaims
         return buildToken(extraClaims, userDetails, Duration);
     }
 

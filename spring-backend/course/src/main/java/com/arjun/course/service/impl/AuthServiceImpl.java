@@ -56,9 +56,9 @@ public class AuthServiceImpl implements AuthService {
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         var user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("role", user.getRole().toString());
-        var accessToken = jwtUtil.generateToken(extraClaims, user);
-        revokeAllUserTokens(user);
+    extraClaims.put("role", user.getRole().toString());
+    var accessToken = jwtUtil.generateToken(extraClaims, user);
+    revokeAllUserTokens(user);
         saveUserToken(user, accessToken);
         return LoginResponse.builder().accessToken(accessToken).build();
     }

@@ -6,7 +6,7 @@ import LogoNavBar from '../components/User/LogoNavBar'
 
 const WebLayout = () => {
   return (
-    <div className='flex flex-col h-screen overflow-hidden justify-center'>
+    <div>
       <div className='absolute top-0 w-full'>
       <LogoNavBar />
       </div>
@@ -14,7 +14,10 @@ const WebLayout = () => {
       <div className='flex-grow '>
         <Outlet />
       </div>
+      <div className='absolute bottom-0 w-full'>
       <Footer />
+
+      </div>
     </div>
   )
 }

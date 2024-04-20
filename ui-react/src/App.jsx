@@ -34,6 +34,7 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route element={<WebLayout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -45,7 +46,6 @@ function App() {
               <Route path="/about" element={<About />} />
             </Route>
             <Route path="/courses" element={<Courses />} />
-            <Route path="/" element={<Home />} />
 
             <Route element={<AdminLayout />}>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />

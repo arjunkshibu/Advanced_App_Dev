@@ -25,8 +25,9 @@ const Contact = () => {
   };
 
   return (
-    <div className='flex items-center  justify-center'>
-    <div className="max-w-md mx-auto absolute top-1/3 flex flex-col justify-center items-center p-8 bg-white rounded shadow-lg">
+    <div className='flex  flex-col items-center  justify-center'>
+      <p>In case of careers or oppurtunities</p>
+    <div className="max-w-md mx-auto absolute top-1/4 flex flex-col justify-center items-center border-2 p-8 bg-white rounded shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -70,7 +71,7 @@ const Contact = () => {
         </div>
         <button
           type="submit"
-          className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
+          className="bg-indigo-500 text-center  text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
         >
           Submit
         </button>

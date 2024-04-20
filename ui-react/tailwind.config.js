@@ -23,7 +23,7 @@ export default {
       },
       colors:{
         'syn-blue': '#39A7FF',
-        'syn-purple' : '#66347F',
+        'syn-purple' : '#030637',
         'syn-red':'#891652',
         'syn-skin':'#D27685',
         'syn-darl':'#240A34',
@@ -31,7 +31,9 @@ export default {
         'syn-lb':'#87C4FF',
         'syn-lb-light':'#E0F4FF',
         'blacky':"#000000",
-        'mil-blue': "#0a2540"
+        'mil-blue': "#0a2540",
+        'li-yel':"#FAEF9B",
+        'test-1':"#67C6E3"
       }
     },
   },

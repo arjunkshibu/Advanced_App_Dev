@@ -1,37 +1,36 @@
 import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import axios from 'axios';
+
 
 
 const Register = () => {
-  const navigate=useNavigate();
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [name, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
-    if (fullName.trim() === "") {
-      alert("Please enter your full name.");
-      return;
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/register', {
+        name,
+        email,
+        phone,
+        password,
+      });
+      if (response.status === 200) {
+        alert('Registration successful!');
+        navigate('/login');
+      } else {
+        alert('Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while registering. Please try again.');
     }
-    if (!email.includes("@")) {
-      alert("Please enter a valid email address.");
-      return;
-    }
-    if (!phone.match(/^\d{10}$/)) {
-      alert("Please enter a valid phone number.");
-      return;
-    }
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters long.");
-      return;
-    }
-
-    console.log("Registration successful!");
-    navigate("/login")
   };
-
   return (
     <div className="flex items-center gap-0 flex-row justify-center h-screen font-Montserrat">
       <div className="flex flex-col items-center justify-evenly  custom-box-shadow min-h-[35rem] min-w-[20rem] md:min-h-[45rem] md:min-w-[27rem]">
@@ -43,7 +42,7 @@ const Register = () => {
               <input
                 className="md:w-[20rem] md:h-[3rem] w-[16rem] h-[2rem] bg-white text-black md:placeholder:text-sm placeholder:text-xs border-gray-400 border pl-2 "
                 placeholder="Type your full name"
-                value={fullName}
+                value={name}
                 onChange={(e) => setFullName(e.target.value)}
               />
             </label>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { SocialIcon } from "react-social-icons";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 
@@ -9,23 +10,38 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/login', {
+        email,
+        password,
+      });
+      console.log('Login Response:', response);
+      console.log('Role:', response.data.role);
 
-    if (!email || !password) {
-      alert('Please enter your email and password.');
-      return;
-    }
+      if (response.status === 200) {
+        const token = response.data.token;
+        const userEmail = email;
+        const role = response.data.role;
 
-    if (email === 'administrator@coursehunt.com' && password === 'admin') {
-      navigate('/admin/dashboard');
-      return;
-    }
-    else{
-      navigate('/user/dashboard')
-    }
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', userEmail);
+        localStorage.setItem('authToken', token);
 
+        if (role === 'Admin') {
+          navigate('/admin');
+        } else {
+          navigate('/dash');
+        }
+      } else {
+        console.error('Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('An error occurred while logging in. Please try again.', error);
+    }
   };
+
+
   return (
     <div className="flex items-center gap-0 flex-row justify-center h-screen font-Montserrat">
     <div className="flex flex-col items-center justify-evenly  custom-box-shadow min-h-[35rem] min-w-[20rem] md:min-h-[45rem] md:min-w-[27rem]">
@@ -61,7 +77,7 @@ const Login = () => {
       </div>
       <div className="flex flex-col items-center gap-3">
         
-        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:px-5 md:py-3 hover:bg-green-600 hover:text-white" onClick={handleSubmit}>
+        <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:px-5 md:py-3 hover:bg-green-600 hover:text-white" onClick={handleLogin}>
           Login
         </button>
         <p className="text-sm md:text-base">Login with social accounts</p>

@@ -5,6 +5,7 @@ import man from '../../assets/img/smile_cpy.jpg';
 const UserProfile = () => {
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
+      <h1>Profile</h1>
   <div className='h-2/3 w-1/2 border-2 border-black text-xl font-Montserrat flex flex-row'>
     <div className='w-1/2 border-r-2  border-black'>  <div className='w-full h-1/3 border-b-2 flex items-center justify-center'>
         <User2/>

@@ -17,7 +17,14 @@ import asus from "../../assets/img/asus.png";
 import jeep from "../../assets/img/jeep.png";
 import activision from "../../assets/img/activision.png";
 import girl from "../../assets/img/outdoors2.jpg";
-import { Bookmark, BookmarkCheck } from 'lucide-react';
+import LaptopIcon from "@mui/icons-material/Laptop";
+import GroupIcon from "@mui/icons-material/Group";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import laptopic from "../../assets/img/5972.jpg";
+import { ClipboardCheck } from "lucide-react";
+import man1 from "../../assets/img/stefan.jpg";
+import woman2 from "../../assets/img/karolina.jpg";
+import woman1 from "../../assets/img/woman1.jpg";
 
 const Home = () => {
   return (
@@ -42,7 +49,6 @@ const Home = () => {
           </div>
           <Slick />
         </section>
-
         <section className="bg-white  h-screen w-screen">
           <div className="w-full h-1/3 flex flex-col bg-slate-300 bg-opacity-45">
             <div className="flex w-full justify-center pt-11">
@@ -129,26 +135,102 @@ const Home = () => {
               </p>
             </div>
             <div className=" w-1/3 h-full ">
-              <img src={girl}/>
+              <img src={girl} />
             </div>
           </div>
         </section>
         <section className="h-screen w-screen flex flex-col justify-center bg-slate-500 bg-opacity-40">
-          <div className="h-1/2 w-full flex flex-row bg-gradient-to-r from-blue-900 to-blue-700 ">
-              <div className="w-full p-6 ">
+          <div className="h-1/2 w-full flex flex-row bg-syn-purple">
+            <div className="h-full w-1/2 bg-white">
+              <img src={laptopic} alt="laptop" className="h-fit" />
+            </div>
+            <div className="w-1/2 p-6 flex flex-col gap-11 justify-center">
+              <p className="text-5xl font-Scania text-green-100">
+                <GroupIcon
+                  className="inline-block mr-4"
+                  fontSize="36"
+                  style={{ color: "cyan" }}
+                />
+                50000+ Students
+              </p>
 
-                <h1 className="text-7xl font-Scania text-yellow-400">Over 500+ Courses</h1>
-                <h1 className="text-7xl font-Scania text-white">50000+ Students</h1>
-                <BookmarkCheck size={46} strokeWidth={3} />
- 
+              <p className="text-5xl font-Scania text-green-100">
+                <LaptopIcon
+                  className="inline-block mr-4"
+                  fontSize="36"
+                  style={{ color: "red" }}
+                />
+                Over 500+ Courses
+              </p>
+
+              <p className="text-5xl font-Scania text-green-100">
+                <WorkspacePremiumIcon
+                  className="inline-block mr-4"
+                  fontSize="36"
+                  style={{ color: "yellow" }}
+                />
+                Global Certifications
+              </p>
+            </div>
+          </div>
+          <div className="h-1/2 bg-white flex flex-col items-center">
+            <h2 className="mt-5 text-3xl">
+              Explore what our users are saying!
+            </h2>
+            <div className="w-full h-full flex flex-row justify-center items-center gap-24">
+              <div className="flex flex-col h-[400px] w-[400px] items-center border-2 border-gray-200 p-9 ">
+                <div className="h-[120px] w-[120px] bg-yellow-300 rounded-full overflow-hidden flex justify-center items-center">
+                  <img
+                    src={man1}
+                    alt="Profile Image"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="text-center text-xl mt-4">Stefan</div>
+                <div className="text-center text-cyan-800 mt-2">
+                  "I've found the courses on Coursehunt incredibly helpful! The
+                  content is well-structured, and the instructors are
+                  knowledgeable. Highly recommend!"
+                </div>
               </div>
-          </div>
-          <div className="h-1/2 bg-white">
 
-          </div>
+              <div className="flex flex-col h-[400px] w-[400px] items-center border-2 border-gray-200 p-9 ">
+                <div className="h-[120px] w-[120px] bg-yellow-300 rounded-full overflow-hidden flex justify-center items-center">
+                  <img
+                    src={woman1}
+                    alt="Profile Image"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="text-center text-xl mt-4">Judith</div>
+                <div className="text-center text-cyan-800 mt-2">
+                  "Coursehunt has been a game-changer for me. The variety of
+                  courses available cater to every interest, and the interactive
+                  learning experience makes it engaging and enjoyable."
+                </div>
+              </div>
 
+              <div className="flex flex-col h-[400px] w-[400px] items-center border-2 border-gray-200 p-9 ">
+                <div className="h-[120px] w-[120px] bg-yellow-300 rounded-full overflow-hidden flex justify-center items-center">
+                  <img
+                    src={woman2}
+                    alt="Profile Image"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="text-center text-xl mt-4">Katy</div>
+                <div className="text-center text-cyan-800 mt-2">
+                  "The instructors on Coursehunt are top-notch. They provide
+                  clear explanations and practical examples, making complex
+                  topics easy to understand. I've already seen the benefits in
+                  my work."
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
-        <Footer/>
+
+        <Footer />
       </div>
     </>
   );
