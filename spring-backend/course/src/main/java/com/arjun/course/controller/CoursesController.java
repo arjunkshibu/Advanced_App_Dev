@@ -39,8 +39,11 @@ public class CoursesController {
         cs.setCourseId(cid);
         return courseService.putCourses(cs);
     }
+
+    //ON DEBUG, if delete fails change String back to void & remove return statement
     @DeleteMapping("/deletecourses")
-    public void deleteCourses(@RequestParam long cid){
+    public String deleteCourses(@RequestParam long cid){
       courseService.deleteCourses(cid);
+      return "Course deleted!";
     }
 }

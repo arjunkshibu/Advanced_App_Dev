@@ -3,7 +3,7 @@ import logo from '../../assets/img/logotext.png'
 
 const UserTopBar = () => {
   return (
-    <nav className="flex items-center justify-between border-b-2 bg-white p-4">
+    <nav className="flex items-center justify-between border-b-2 bg-white p-4 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center space-x-2">
         <img src={logo} alt="Logo" className="h-8" />
       </div>

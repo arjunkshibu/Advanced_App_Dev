@@ -58,7 +58,6 @@ function App() {
               <Route path="/user/dashboard" element={<UserDashboard />} />
               <Route path="/user/favourites" element={<UserFavourites />} />
               <Route path="/user/profile" element={<UserProfile />} />
-              <Route path="/user/profile" element={<UserProfile />} />
               <Route path="/user/payments" element={<UserPayments />} />
               <Route path="/user/subscriptions" element={<UserSubscriptions />} />
 
