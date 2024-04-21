@@ -11,4 +11,6 @@ public class LoginResponse {
     @Builder.Default
     private String accessToken = "";
     private String role;
+    private Long uId;
+    private String name;
 }

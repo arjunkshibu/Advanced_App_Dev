@@ -59,12 +59,16 @@ public LoginResponse login(LoginRequest loginRequest) {
     Map<String, Object> extraClaims = new HashMap<>();
     var accessToken = jwtUtil.generateToken(extraClaims, user);
     String role = user.getRole().toString();
+    Long userId = user.getUid();
+    String name = user.getName();
     revokeAllUserTokens(user);
     saveUserToken(user, accessToken);
     
     return LoginResponse.builder()
     .accessToken(accessToken)
     .role(role)
+    .uId(userId)
+    .name(name)
     .build();
 }
 

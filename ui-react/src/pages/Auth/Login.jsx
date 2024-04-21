@@ -20,13 +20,19 @@ const Login = () => {
       console.log('Role:', response.data.role);
 
       if (response.status === 200) {
-        const token = response.data.token;
+        console.log(response.data)
+        const token = response.data.accessToken;
+        const uid = response.data.uid;
         const userEmail = email;
         const role = response.data.role;
+        const userName = response.data.name;
 
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId',uid);
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('authToken', token);
+        localStorage.setItem('uName', userName);
+
 
         if (role === 'Admin') {
           navigate('/admin/dashboard');

@@ -38,7 +38,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route element={<WebLayout />}>
               <Route path="/login" element={<Login />} />
-              <Route path="/paymentPage" element={<Payment />} />
               <Route path="/register" element={<Register />} />
               <Route path="/*" element={<Error404 />} />
               <Route path="/terms" element={<Terms />} />
