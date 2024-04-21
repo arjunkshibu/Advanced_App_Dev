@@ -98,6 +98,7 @@ const UserLanding = () => {
                     onClick={() => handlePayment(course.coursePrice)} // Pass course.coursePrice as an argument
                   >
                     <span className="mr-1">$</span>{course.coursePrice}
+
                   </button>
                 </div>
               </div>
