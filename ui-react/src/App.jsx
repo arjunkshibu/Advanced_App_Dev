@@ -27,6 +27,7 @@ import Policy from "./pages/User/Policy";
 import Help from "./pages/User/Help";
 import UserPayments from "./pages/User/UserPayments";
 import UserSubscriptions from "./pages/User/UserSubscriptions";
+import Payment from "./services/Payment";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route element={<WebLayout />}>
               <Route path="/login" element={<Login />} />
+              <Route path="/paymentPage" element={<Payment />} />
               <Route path="/register" element={<Register />} />
               <Route path="/*" element={<Error404 />} />
               <Route path="/terms" element={<Terms />} />
