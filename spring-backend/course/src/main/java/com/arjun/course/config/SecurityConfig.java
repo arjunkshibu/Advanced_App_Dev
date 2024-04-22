@@ -57,7 +57,8 @@ public class SecurityConfig {
                         "/api/admin/default",
                         "/v3/api-docs/**",
                         "/api/courses/**",
-                        "/api/purchased-courses/**"
+                        "/api/purchased-courses/**",
+                        "/api/favourites/**"
         };
 
         @Bean

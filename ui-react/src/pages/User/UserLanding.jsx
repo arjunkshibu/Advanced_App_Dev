@@ -110,7 +110,7 @@ const UserLanding = () => {
   };
 
   return (
-    <div className="flex flex-col font-Montserrat h-screen">
+    <div className="flex flex-col bg-gray-200 font-Montserrat h-screen">
       <UserTopBar />
       <div className="flex flex-1">
         <UserSidebar/>
@@ -118,7 +118,7 @@ const UserLanding = () => {
           <h2 className="text-3xl mt-20 font-semibold mb-4 text-center">Explore our courses</h2>
           <div className="grid grid-cols-4 gap-4 p-4">
             {courses.map(course => (
-              <div key={course.id} className="border-2 text-center border-gray-300 rounded-md p-4 h-96"> 
+              <div key={course.id} className="border-2 text-center bg-white border-gray-300 rounded-md p-4 h-96"> 
                 <img src={course.courseImgUrl} alt={course.courseName} className=" border border-white w-full mb-2 h-[180px]" />
                 <h3 className="text-lg font-semibold mb-1">
                   {course.courseName.includes("FREE") ? (
@@ -131,7 +131,7 @@ const UserLanding = () => {
                 <p className="text-base mb-1"> {course.courseDuration}</p>
                 <div className="flex items-center justify-center">
                   {purchasedCourses.some(pCourse => pCourse.courseId === course.courseId) ? (
-                    <span className="text-2xl mb-1 mt-3 text-gray-500">Purchased</span>
+                    <span className="text-2xl mb-1 mt-3 text-green-600">Purchased</span>
                   ) : (
                     <button 
                       className={`text-2xl mb-1 mt-3 border px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`} 

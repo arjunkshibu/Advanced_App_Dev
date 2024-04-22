@@ -1,19 +1,21 @@
 package com.arjun.course.service.impl;
 
-import com.arjun.course.model.Courses;
-import com.arjun.course.repository.CoursesRepository;
-import com.arjun.course.service.CoursesService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.arjun.course.model.Courses;
+import com.arjun.course.repository.CoursesRepository;
+import com.arjun.course.service.CoursesService;
 
 @Service
 public class CoursesServiceImpl implements CoursesService {
 
     private final CoursesRepository coursesRepository;
 
-    @Autowired
+    
     public CoursesServiceImpl(CoursesRepository coursesRepository) {
         this.coursesRepository = coursesRepository;
     }
@@ -22,6 +24,7 @@ public class CoursesServiceImpl implements CoursesService {
     public List<Courses> getAllCourses() {
         return coursesRepository.findAll();
     }
+
 
     @Override
     public Courses addCourse(Courses course) {

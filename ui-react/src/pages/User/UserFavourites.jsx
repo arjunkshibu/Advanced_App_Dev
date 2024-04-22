@@ -1,76 +1,72 @@
-import React from 'react'
-import { Album, Clock, Heart } from 'lucide-react';
-import { ClipboardCheck } from 'lucide-react';
-import astro from '../../assets/img/astrophysics.jpg'
-import ux from '../../assets/img/ux-design.png'
-import machine from '../../assets/img/mlf.png'
-import mobile from '../../assets/img/mobile-app-development.jpeg'
-import Web from '../../assets/img/web-development.jpg'
-import swift from '../../assets/img/ios-development.jpg'
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '../../services/AxiosConfig';
+import { Heart } from 'lucide-react';
 
 const UserFavourites = () => {
+  const [favouriteCourses, setFavouriteCourses] = useState([]);
+
+  useEffect(() => {
+    const fetchFavourites = async () => {
+      try {
+        // Fetch purchased courses for the current user
+        const purchasedCoursesResponse = await axiosInstance.get('http://localhost:8080/api/favourites/getAll');
+        const purchasedCourses = purchasedCoursesResponse.data;
+
+        // Get the user ID from localStorage
+        const localUserId = localStorage.getItem('userId');
+
+        // Filter purchased courses for the current user
+        const userCourses = purchasedCourses.filter(course => course.userId == localUserId);
+
+        // Extract course IDs
+        const courseIds = userCourses.map(course => course.courseId);
+
+        // Fetch course details for each course ID
+        const coursesData = await Promise.all(courseIds.map(async courseId => {
+          const courseResponse = await axiosInstance.get(`http://localhost:8080/api/courses/${courseId}`);
+          return courseResponse.data;
+        }));
+        
+        setFavouriteCourses(coursesData);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchFavourites();
+  }, []);
+
+
   return (
-    <div className='flex flex-col pt-10 pl-72 h-full font-Montserrat  ml-2 overflow-y-auto'>
-    <h2 className='font-sans font-bold text-xl flex gap-2 flex-row '>
-       <Heart size={30} />Favourites</h2>
-    <div className='ml-[1.7rem] flex p-5 flex-row items-center justify-center '>
-       <div className='flex flex-col w-[30vh] h-[30vh] bg-white shadow-2xl cursor-pointer'>
-        <img src={astro} className='w-[100%] h-[50%]'></img>
-        <div className="course-info h-[40%]">
-        <h2 className='font-sans pt-3 pl-3 font-bold text-xl'>Advanced Astrophysics</h2>
-        <p className='font-sans pt-2 pl-3 font-semibold text-xs text-slate-600'>By: Prof. Sarah Davis</p>
-        </div>
-        <div className='flex flex-row '>
-        <div className='bg-syn-purple mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Remove</h2>
-        </div>
-        </div>
-       </div>
-       <div className='flex flex-col w-[30vh] h-[30vh] bg-white shadow-2xl cursor-pointer mr-7 ml-7'>
-        <img src={machine} className='w-[100%] h-[50%]'></img>
-        <div className="course-info h-[40%]">
-        <h2 className='font-sans pt-3 pl-3 font-bold text-xl'>Machine Learning Foundations</h2>
-        <p className='font-sans pt-2 pl-3 font-semibold text-xs text-slate-600'>By: Dr. Mark Wilson</p>
-        </div>
-        <div className='flex flex-row '>
-        <div className='bg-syn-purple mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Remove</h2>
-        </div>
-        </div>
-       </div>
-       
+    <div className='flex flex-col pt-10 pl-72 h-full font-Montserrat ml-2 overflow-y-auto'>
+      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 mt-24  pb-2">My Favourite Courses</h2>
+      <div className="grid grid-cols-3 gap-4 p-4">
+        {favouriteCourses.map(course => (
+          <div key={course.id} className="border-2 text-center bg-opacity-55 bg-white border-gray-300 rounded-md p-4 h-96 w-[400px]"> {/* Adjust width here */}
+            <img src={course.courseImgUrl} alt={course.courseName} className=" border border-white w-full mb-2 h-[180px]" />
+            <h3 className="text-lg font-semibold mb-1">
+              {course.courseName.includes("FREE") ? (
+                <span style={{ color: 'green' }}>{course.courseName}</span>
+              ) : (
+                course.courseName
+              )}
+            </h3>
+            <p className="text-base mb-1">Instructor: {course.courseInstructor}</p>
+            <p className="text-base mb-1"> {course.courseDuration}</p>
+            <div className="flex items-center justify-center h-[60px] space-x-4 mt-2">
+              <button className='text-2xl mb-1 border px-4  text-white bg-green-700 flex items-center'>
+                <span>Continue</span>
+              </button>
+              <button className={`text-2xl mb-1  px-4 py-1 text-red-500 flex items-center`}>
+                <Heart size={24} fill='red' /> {/* Heart icon */}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    <h2 className='font-sans pt-5  flex flex-row text-2xl font-bold text-black'>
-   </h2>
-   <div className='flex p-5 flex-row '>
-       
-       <div className='flex flex-col w-[30vh] h-[30vh] bg-white shadow-2xl cursor-pointer  mr-7 ml-7'>
-        <img src={mobile} className='w-[100%] h-[50%]'></img>
-        <div className="course-info h-[40%]">
-        <h2 className='font-sans pt-3 pl-3 font-bold text-xl'>Mobile App Development Essentials</h2>
-        <p className='font-sans pt-2 pl-3 font-semibold text-xs text-slate-600'>By: Dr. Robert White</p>
-        </div>
-        <div className='flex flex-row '>
-        <div className='bg-green-700 mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Start</h2>
-        </div>
-        </div>
-       </div>
-       <div className='flex flex-col w-[30vh] h-[30vh] bg-white shadow-2xl cursor-pointer'>
-        <img src={swift} className='w-[100%] h-[50%]'></img>
-        <div className="course-info h-[40%]">
-        <h2 className='font-sans pt-3 pl-3 font-bold text-xl'>iOS App Development with Swift</h2>
-        <p className='font-sans pt-2 pl-3 font-semibold text-xs text-slate-600'>By: Prof. Jacob Brown</p>
-        </div>
-        <div className='flex flex-row '>
-        <div className='bg-green-700 mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]'>
-          <h2 className=''>Start</h2>
-        </div>
-        </div>
-       </div>
-    </div>
-  </div>
-  )
+  );
 }
 
-export default UserFavourites
+export default UserFavourites;

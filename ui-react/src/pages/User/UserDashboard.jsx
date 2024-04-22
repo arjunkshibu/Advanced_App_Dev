@@ -1,43 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '../../services/AxiosConfig';
+import { Heart } from 'lucide-react';
 
 function UserDashboard() {
-  const [purchasedCourses, setPurchasedCourses] = useState([]);
-  const navigate = useNavigate();
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const fetchPurchasedCourses = async () => {
+    const fetchData = async () => {
       try {
-        // Fetch purchased courses from the backend
-        const response = await axios.get('http://localhost:8080/api/purchased-courses');
-        setPurchasedCourses(response.data);
+        // Fetch purchased courses for the current user
+        const purchasedCoursesResponse = await axiosInstance.get('http://localhost:8080/api/purchased-courses/getAll');
+        const purchasedCourses = purchasedCoursesResponse.data;
+
+        // Get the user ID from localStorage
+        const localUserId = localStorage.getItem('userId');
+
+        // Filter purchased courses for the current user
+        const userCourses = purchasedCourses.filter(course => course.userId == localUserId);
+
+        // Extract course IDs
+        const courseIds = userCourses.map(course => course.courseId);
+
+        // Fetch course details for each course ID
+        const coursesData = await Promise.all(courseIds.map(async courseId => {
+          const courseResponse = await axiosInstance.get(`http://localhost:8080/api/courses/${courseId}`);
+          return courseResponse.data;
+        }));
+        
+        setCourses(coursesData);
+        
       } catch (error) {
-        console.error('Error fetching purchased courses:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchPurchasedCourses();
+    fetchData();
   }, []);
 
+  const handleAddToFavorites = async (courseId) => {
+    try {
+      const localUserId = localStorage.getItem('userId');
+      await axiosInstance.post('http://localhost:8080/api/favourites/add', { userId: localUserId, courseId });
+      // Optionally, you can update state or show a message after successfully adding to favorites
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+    }
+  };
+
   return (
-    <div className="flex flex-col pt-10 pl-72 h-full font-Montserrat overflow-y-auto">
-      <h2 className="font-sans font-bold text-xl flex gap-2 flex-row ">
-        On Going Courses
-      </h2>
-      <div className="flex p-5 flex-row items-center justify-center">
-        {/* Grid to display purchased courses */}
-        {purchasedCourses.map(course => (
-          <div key={course.id} className="flex flex-col w-[30vh] h-[30vh] bg-white shadow-2xl cursor-pointer">
-            <img src={course.courseImgUrl} className="w-[100%] h-[50%]" alt={course.courseName} />
-            <div className="course-info h-[40%]">
-              <h2 className="font-sans pt-3 pl-3 font-bold text-xl">{course.courseName}</h2>
-              <p className="font-sans pt-2 pl-3 font-semibold text-xs text-slate-600">By: {course.courseInstructor}</p>
-            </div>
-            <div className="flex flex-row ">
-              <div className="bg-syn-purple mt-3 p-2 text-xl  text-bold flex justify-center items-center text-white  w-[100%]">
-                <h2 className="">Continue...</h2>
-              </div>
+    <div className='flex flex-col pt-10 pl-72 h-full font-Montserrat ml-2 overflow-y-auto'>
+      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 mt-24  pb-2">My Courses</h2>
+      <div className="grid grid-cols-3 gap-4 p-4">
+        {courses.map(course => (
+          <div key={course.id} className="border-2 text-center bg-opacity-55 bg-white border-gray-300 rounded-md p-4 h-96 w-[400px]"> {/* Adjust width here */}
+            <img src={course.courseImgUrl} alt={course.courseName} className=" border border-white w-full mb-2 h-[180px]" />
+            <h3 className="text-lg font-semibold mb-1">
+              {course.courseName.includes("FREE") ? (
+                <span style={{ color: 'green' }}>{course.courseName}</span>
+              ) : (
+                course.courseName
+              )}
+            </h3>
+            <p className="text-base mb-1">Instructor: {course.courseInstructor}</p>
+            <p className="text-base mb-1"> {course.courseDuration}</p>
+            <div className="flex items-center justify-center h-[60px] space-x-4 mt-2">
+              <button className='text-2xl mb-1 border px-4  text-white bg-green-700 flex items-center'>
+                <span>Continue</span>
+              </button>
+              <button className={`text-2xl mb-1  px-4 py-1 text-red-500 flex items-center`}>
+                <Heart size={24} color='red' /> {/* Heart icon */}
+              </button>
             </div>
           </div>
         ))}
