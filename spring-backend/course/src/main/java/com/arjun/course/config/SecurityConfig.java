@@ -56,7 +56,8 @@ public class SecurityConfig {
                         "/swagger-ui.html/**",
                         "/api/admin/default",
                         "/v3/api-docs/**",
-                        "/api/courses/**"
+                        "/api/courses/**",
+                        "/api/purchased-courses/**"
         };
 
         @Bean

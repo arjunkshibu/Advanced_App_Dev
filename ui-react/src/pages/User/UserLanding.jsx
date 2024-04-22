@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../services/AxiosConfig';
 import UserTopBar from '../../components/User/UserTopBar';
 import UserSidebar from '../../components/User/UserSideBar';
-import { NavLink, useNavigate } from 'react-router-dom'; // Import useHistory
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { razorpayconfig, testuserconfig } from '../../services';
 
@@ -10,6 +10,7 @@ const UserLanding = () => {
   const [courses, setCourses] = useState([]);
   const [usdToInrRate, setUsdToInrRate] = useState(null);
   const navigate = useNavigate();
+  const [purchasedCourses, setPurchasedCourses] = useState([]);
 
   useEffect(() => {
     // Check if user is logged in
@@ -42,11 +43,38 @@ const UserLanding = () => {
       }
     };
     fetchExchangeRate();
-  }, [history]); // Add history to dependencies array
 
-  const handlePayment = (coursePrice) => {
+    const fetchPurchasedCourses = async () => {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        try {
+          const response = await axiosInstance.get(`http://localhost:8080/api/purchased-courses/${userId}`);
+          setPurchasedCourses(response.data);
+        } catch (error) {
+          console.error('Error fetching purchased courses:', error);
+        }
+      }
+    };
+
+    fetchPurchasedCourses();
+  }, []);
+
+  const handlePaymentSuccess = async (courseId, userId) => {
+    try {
+      // Send a request to the backend to add the purchased course
+      await axiosInstance.post('http://localhost:8080/api/purchased-courses/add', { courseId, userId });
+      // Reload the list of courses to update the UI
+      const filteredCourses = courses.filter(course => !purchasedCourses.find(pCourse => pCourse.courseId === course.courseId));
+      setCourses(filteredCourses);
+    } catch (error) {
+      console.error('Error adding purchased course:', error);
+    }
+  };
+
+  const handlePayment = (coursePrice, courseId) => {
+    
+    console.log(courseId);
     const amountInPaise = Math.round(coursePrice * usdToInrRate * 100);
-
     const options = {
       key: razorpayconfig.key,
       key_secret: razorpayconfig.key_secret,
@@ -55,6 +83,14 @@ const UserLanding = () => {
       name: razorpayconfig.name,
       handler: (res) => {
         alert(res.razorpay_payment_id);
+        // Get userId from localStorage
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+          console.error('User ID not found in localStorage');
+          return;
+        }
+        // Call function to add purchased course to the backend
+        handlePaymentSuccess(courseId, userId);
       },
       prefill: {
         name: testuserconfig.name,
@@ -68,6 +104,7 @@ const UserLanding = () => {
         color: '#f5f5f7'
       }
     };
+    
     const pay = new window.Razorpay(options);
     pay.open();
   };
@@ -91,15 +128,18 @@ const UserLanding = () => {
                   )}
                 </h3>
                 <p className="text-base mb-1">Instructor: {course.courseInstructor}</p>
-                <p className="text-base mb-1">Duration: {course.courseDuration}</p>
+                <p className="text-base mb-1"> {course.courseDuration}</p>
                 <div className="flex items-center justify-center">
-                  <button 
-                    className={`text-2xl mb-1 mt-3 border px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`} 
-                    onClick={() => handlePayment(course.coursePrice)} // Pass course.coursePrice as an argument
-                  >
-                    <span className="mr-1">$</span>{course.coursePrice}
-
-                  </button>
+                  {purchasedCourses.some(pCourse => pCourse.courseId === course.courseId) ? (
+                    <span className="text-2xl mb-1 mt-3 text-gray-500">Purchased</span>
+                  ) : (
+                    <button 
+                      className={`text-2xl mb-1 mt-3 border px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`} 
+                      onClick={() => handlePayment(course.coursePrice, course.courseId)} // Pass course.coursePrice and courseId as arguments
+                    >
+                      <span className="mr-1">$</span>{course.coursePrice}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -108,6 +148,5 @@ const UserLanding = () => {
       </div>
     </div>
   );
-}
-
+}  
 export default UserLanding;
