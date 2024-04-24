@@ -9,12 +9,12 @@ const AdminLayout = () => {
       <AdminsideBar />
       <div className='flex flex-col w-full'>
         <AdminTopBar />
-        <div className='flex flex-col flex-1 p-2 overflow-y-auto'>
+        <div className='flex flex-col flex-1 overflow-y-auto'>
           <Outlet />
         </div>
       </div>
     </div>
-  );
-};
+    );
+  };
 
 export default AdminLayout;

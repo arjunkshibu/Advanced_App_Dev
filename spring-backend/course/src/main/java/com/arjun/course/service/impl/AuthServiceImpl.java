@@ -61,6 +61,8 @@ public LoginResponse login(LoginRequest loginRequest) {
     String role = user.getRole().toString();
     Long userId = user.getUid();
     String name = user.getName();
+    String phone = user.getPhone();
+    String email = user.getEmail();
     revokeAllUserTokens(user);
     saveUserToken(user, accessToken);
     
@@ -69,6 +71,8 @@ public LoginResponse login(LoginRequest loginRequest) {
     .role(role)
     .uId(userId)
     .name(name)
+    .phone(phone)
+    .email(email)
     .build();
 }
 

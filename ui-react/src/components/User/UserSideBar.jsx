@@ -26,7 +26,7 @@ const UserSidebar = () => {
   return (
     <div className="h-full w-56 bg-gray-800 py-20 px-2">
       <div className="text-xl">
-        <ul className="space-y-16 flex flex-col items-center">
+        <ul className="space-y-16 flex mt-20 flex-col items-center">
           <li>
             <NavLink
               to="/user/landing"
@@ -91,13 +91,13 @@ const UserSidebar = () => {
             </NavLink>
           </li>
         </ul>
-      </div>
-      <div className="mt-auto flex items-center justify-center">
+      <div className="flex mt-9 items-center justify-center">
         <NavLink to="/" onClick={handleLogout}>
           <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
             Logout
           </button>
         </NavLink>
+      </div>
       </div>
     </div>
   );

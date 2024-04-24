@@ -6,7 +6,7 @@ axiosInstance.defaults.baseURL = 'http://localhost:8080';
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('authToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }

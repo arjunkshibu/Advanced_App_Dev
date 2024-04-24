@@ -26,12 +26,18 @@ const Login = () => {
         const userEmail = email;
         const role = response.data.role;
         const userName = response.data.name;
+        const uEmail = response.data.email;
+        const uPhone = response.data.phone;
 
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userId',uid);
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('authToken', token);
         localStorage.setItem('uName', userName);
+        localStorage.setItem('uEmail', uEmail);
+        localStorage.setItem('uPhone', uPhone);
+
+
 
 
         if (role === 'Admin') {

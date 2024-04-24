@@ -58,7 +58,8 @@ public class SecurityConfig {
                         "/v3/api-docs/**",
                         "/api/courses/**",
                         "/api/purchased-courses/**",
-                        "/api/favourites/**"
+                        "/api/favourites/**",
+                        "/users/**"
         };
 
         @Bean
@@ -68,7 +69,7 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .authorizeHttpRequests(
                                                 authorize -> authorize.requestMatchers(PublicEndPoints).permitAll()
-                                                .requestMatchers("/users/**")
+                                                .requestMatchers("/onlyadmin/**")
                                                 .hasRole(Admin.name())
                                                 .anyRequest()
                                                 .authenticated())

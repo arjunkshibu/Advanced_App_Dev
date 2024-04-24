@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 const initialUsers = [
-  { id: 1, name: 'User 1', email: 'user1@example.com', role: 'User' },
-  { id: 2, name: 'User 2', email: 'user2@example.com', role: 'User' },
-  { id: 3, name: 'User 3', email: 'user3@example.com', role: 'User' }
+  { id: 1, name: 'Akash', email: 'akash@gmail.com', role: 'User' },
+  { id: 2, name: 'Aksha', email: 'aksha@gmail.com', role: 'User' },
+  { id: 3, name: 'Arjun', email: 'arjun@gmail.com', role: 'User' }
 ];
 
 const UsersTable = () => {

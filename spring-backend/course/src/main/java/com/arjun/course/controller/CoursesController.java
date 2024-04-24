@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arjun.course.model.Courses;
 import com.arjun.course.service.CoursesService;
-
 @RestController
 @RequestMapping("/api/courses")
 public class CoursesController {
@@ -32,9 +30,9 @@ public class CoursesController {
     }
 
     @GetMapping("/{id}")
-public Courses getCourseById(@PathVariable long id) {
-    return courseService.getCourseById(id);
-}
+    public Courses getCourseById(@PathVariable long id) {
+        return courseService.getCourseById(id);
+    }
 
     @PostMapping("/post")
     @PreAuthorize("hasRole('Admin')")
@@ -42,16 +40,16 @@ public Courses getCourseById(@PathVariable long id) {
         return courseService.addCourse(course);
     }
 
-    @PutMapping("/putcourses")
+    @PutMapping("/putcourses/{cid}")
     @PreAuthorize("hasRole('Admin')")
-    public Courses putCourses(@RequestParam long cid, @RequestBody Courses cs) {
+    public Courses putCourses(@PathVariable long cid, @RequestBody Courses cs) {
         cs.setCourseId(cid);
         return courseService.putCourses(cs);
     }
 
-    @DeleteMapping("/deletecourses")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String deleteCourses(@RequestParam long cid){
+    @DeleteMapping("/deletecourses/{cid}") 
+    @PreAuthorize("hasRole('Admin')")
+    public String deleteCourses(@PathVariable long cid){
         courseService.deleteCourses(cid);
         return "Course deleted!";
     }

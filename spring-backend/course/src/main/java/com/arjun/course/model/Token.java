@@ -2,6 +2,7 @@ package com.arjun.course.model;
 
 
 import com.arjun.course.enums.TokenType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,7 +41,10 @@ public class Token {
     private boolean revoked;
     private boolean expired;
 
+    
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference 
     @JoinColumn(name = "user_uid")
     private User user;
     

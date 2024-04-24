@@ -8,26 +8,35 @@ const UserFavourites = () => {
   useEffect(() => {
     const fetchFavourites = async () => {
       try {
-        // Fetch purchased courses for the current user
-        const purchasedCoursesResponse = await axiosInstance.get('http://localhost:8080/api/favourites/getAll');
-        const purchasedCourses = purchasedCoursesResponse.data;
+        // Fetch favourite courses for the current user
+        const favouriteCoursesResponse = await axiosInstance.get('http://localhost:8080/api/favourites/getAll');
+        const fetchedFavouriteCourses = favouriteCoursesResponse.data;
 
         // Get the user ID from localStorage
         const localUserId = localStorage.getItem('userId');
 
-        // Filter purchased courses for the current user
-        const userCourses = purchasedCourses.filter(course => course.userId == localUserId);
+        // Filter favourite courses for the current user
+        const userFavouriteCourses = fetchedFavouriteCourses.filter(course => course.userId == localUserId);
 
         // Extract course IDs
-        const courseIds = userCourses.map(course => course.courseId);
+        const courseIds = userFavouriteCourses.map(course => course.courseId);
 
         // Fetch course details for each course ID
         const coursesData = await Promise.all(courseIds.map(async courseId => {
           const courseResponse = await axiosInstance.get(`http://localhost:8080/api/courses/${courseId}`);
           return courseResponse.data;
         }));
-        
-        setFavouriteCourses(coursesData);
+
+        // Filter out courses with missing or undefined values for any required field
+        const filteredCoursesData = coursesData.filter(course => 
+          course.courseName && 
+          course.courseInstructor && 
+          course.courseDuration &&
+          course.courseImgUrl &&
+          course.courseId
+        );
+
+        setFavouriteCourses(filteredCoursesData);
         
       } catch (error) {
         console.error('Error fetching data:', error);

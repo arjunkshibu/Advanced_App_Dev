@@ -1,31 +1,39 @@
-import React from 'react'
-import { Phone, Mail, User2 } from 'lucide-react';
+import React from 'react';
+import { Phone, Mail, User } from 'lucide-react';
 import man from '../../assets/img/smile_cpy.jpg';
 
 const UserProfile = () => {
+  // Fetch user data from localStorage
+  const uName = localStorage.getItem('uName');
+  const uEmail = localStorage.getItem('uEmail');
+  const uPhone = localStorage.getItem('uPhone');
+
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
-      <h1>Profile</h1>
-  <div className='h-2/3 w-1/2 border-2 border-black text-xl font-Montserrat flex flex-row'>
-    <div className='w-1/2 border-r-2  border-black'>  <div className='w-full h-1/3 border-b-2 flex items-center justify-center'>
-        <User2/>
-        Ryan Gosling
-      </div>
-      <div className='w-full h-1/3 border-b-2 border-t-2 border-black flex items-center justify-center'>
-        <Phone />
-        +91 9876543210
-      </div>
-      <div className='w-full h-1/3 flex items-center justify-center'>
-        <Mail/>
-        goslingshot@gmail.com
+      <div className='w-1/3 h-1/4 bg-white rounded-lg shadow-lg p-8'>
+        <h1 className='text-2xl font-semibold mb-4 text-center'>Profile</h1>
+        <div className='flex flex-col md:flex-row'>
+          <div className='w-full md:w-1/2 border-b md:border-b-0 md:border-r border-gray-300 pb-4 md:pb-0'>
+            <div className='flex items-center mb-4'>
+              <User className='w-6 h-6 mr-2' />
+              <span className='text-lg font-semibold'>{uName}</span>
+            </div>
+            <div className='flex items-center mb-4'>
+              <Phone className='w-6 h-6 mr-2' />
+              <span>{uPhone}</span>
+            </div>
+            <div className='flex items-center'>
+              <Mail className='w-6 h-6 mr-2' />
+              <span>{uEmail}</span>
+            </div>
+          </div>
+          <div className='flex items-center justify-center w-full md:w-1/2'>
+            <img src={man} alt="Profile" className='rounded-full h-32 w-32 md:h-32 md:w-32' />
+          </div>
+        </div>
       </div>
     </div>
-    <div className='flex w-1/2 items-center justify-center flex-col'> <img src={man} alt="" className='rounded-full h-[200px] w-[200px] '/>
-      <h6>Ryan Gosling</h6>
-    </div>
-  </div>
-</div>
-  )
-}
+  );
+};
 
-export default UserProfile
+export default UserProfile;

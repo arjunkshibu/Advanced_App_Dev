@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from 'axios';
 
 
@@ -87,6 +87,9 @@ const Register = () => {
           <button className="border border-gray-400  pt-1 pb-1 pl-2 pr-2 text-sm md:p-2 hover:bg-green-700" onClick={handleRegister}>
             Register
           </button>
+          <NavLink to="/login">
+          <p className="font-normal">Already a User?</p>
+          </NavLink>
           <p className="font-normal">Register with social accounts</p>
           <div className="flex flex-row md:space-x-4 justify-center items-center space-x-2">
             <SocialIcon

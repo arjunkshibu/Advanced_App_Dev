@@ -9,7 +9,6 @@ const Courses = lazy(() => import("./pages/Shared/Courses"));
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
 const UsersTable = lazy(() => import("./pages/Admin/AdminUsers"));
-const AdminCourses = lazy(() => import("./pages/Admin/AdminCourses"));
 const AdminPayments = lazy(() => import("./pages/Admin/AdminPayments"));
 const AdminProfile = lazy(() => import("./pages/Admin/AdminProfile"));
 const UserLayout = lazy(() => import("./layouts/UserLayout"));
@@ -28,6 +27,7 @@ import Help from "./pages/User/Help";
 import UserPayments from "./pages/User/UserPayments";
 import UserSubscriptions from "./pages/User/UserSubscriptions";
 import Payment from "./services/Payment";
+import AdminCourses from "./pages/Admin/AdminCourses";
 
 function App() {
   return (
@@ -50,10 +50,10 @@ function App() {
 
             <Route element={<AdminLayout />}>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              <Route path="/admin/courses" element={<AdminCourses />} />
               <Route path="/admin/users" element={<UsersTable />} />
               <Route path="/admin/payments" element={<AdminPayments />} />
               <Route path="/admin/profile" element={<AdminProfile />} />
+              <Route path="/admin/courses" element={<AdminCourses />} />
             </Route>
             <Route element={<UserLayout />}>
               <Route path="/user/dashboard" element={<UserDashboard />} />
