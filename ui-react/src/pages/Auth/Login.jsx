@@ -31,6 +31,7 @@ const Login = () => {
 
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userId',uid);
+        localStorage.setItem('role', role);
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('authToken', token);
         localStorage.setItem('uName', userName);

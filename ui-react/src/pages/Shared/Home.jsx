@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TopBar from "../../components/User/TopBar";
 import Footer from "../../components/User/Footer";
 import Slider from "react-slick";
@@ -27,9 +27,10 @@ import woman2 from "../../assets/img/karolina.jpg";
 import woman1 from "../../assets/img/woman1.jpg";
 
 const Home = () => {
+ 
   return (
     <>
-      <div className="bg-bg-girl-w bg-center bg-cover  z-40 bg-fixed font-Montserrat overflow-hidden">
+      <div className="bg-bg-girl-w bg-center bg-cover z-40 bg-fixed font-Montserrat overflow-hidden">
         <TopBar />
 
         <section className="relative flex flex-col items-center justify-center h-screen z-10">

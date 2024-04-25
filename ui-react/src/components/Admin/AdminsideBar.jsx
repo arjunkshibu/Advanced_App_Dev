@@ -9,9 +9,11 @@ const Adminsidebar = () => {
   const isPaymentsActive = location.pathname === "/admin/payments";
   const isProfilesActive = location.pathname === "/admin/profile";
 
-  const handleLinkClick = () => {
-    window.location.reload();
-  };
+  const handleLogout = () =>{
+    localStorage.clear();
+  }
+
+ 
 
   return (
     <div className="h-screen m-0"> 
@@ -21,7 +23,6 @@ const Adminsidebar = () => {
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-purple justify-center h-20 ${
             isDashboardActive ? "text-green-500 hover:text-white" : ""
           }`}
-          onClick={handleLinkClick}
         >
           Dashboard
         </NavLink>
@@ -30,7 +31,6 @@ const Adminsidebar = () => {
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-purple justify-center h-20 ${
             isCoursesActive ? "text-green-500 hover:text-white" : ""
           }`}
-          onClick={handleLinkClick}
         >
           Courses
         </NavLink>
@@ -39,7 +39,6 @@ const Adminsidebar = () => {
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-purple justify-center h-20 ${
             isUsersActive ? "text-green-500 hover:text-white" : ""
           }`}
-          onClick={handleLinkClick}
         >
           Users
         </NavLink>
@@ -48,7 +47,6 @@ const Adminsidebar = () => {
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-purple justify-center h-20 ${
             isPaymentsActive ? "text-green-500 hover:text-white" : ""
           }`}
-          onClick={handleLinkClick}
         >
           Payments
         </NavLink>
@@ -57,12 +55,11 @@ const Adminsidebar = () => {
           className={`w-full border-b border-t border-gray-200 text-center flex items-center hover:bg-green-500  bg-syn-purple justify-center h-20 ${
             isProfilesActive ? "text-green-500 hover:text-white" : ""
           }`}
-          onClick={handleLinkClick}
           >
           Profiles
         </NavLink>
         <NavLink to="/">
-          <button className="bg-red-500 hover:bg-red-600 text-center flex items-center justify-center p-2">
+          <button className="bg-red-500 hover:bg-red-600 text-center flex items-center justify-center p-2" onClick={handleLogout}>
             Logout
           </button>
         </NavLink>
