@@ -19,7 +19,8 @@ export default {
       },
       fontFamily:{
         'Montserrat': ["Montserrat, sans"],
-        'Scania':["Scania"]
+        'Scania':["Scania"],
+        'Cabin' : ["Cabin"]
       },
       colors:{
         'syn-blue': '#39A7FF',

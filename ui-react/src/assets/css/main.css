@@ -12,6 +12,11 @@
     font-family: "Scania";
     src: url("../fonts/scania/ScaniaSansCYHeadline-Bold.ttf");
   }
+
+  @font-face {
+    font-family: "Cabin";
+    src: url("../fonts/cabin/Cabin-Regular-TTF.ttf");
+  }
 }
 .loader {
   width: 48px;

@@ -52,7 +52,7 @@ const Login = () => {
     } catch (error) {
       console.error('An error occurred while logging in. Please try again.', error);
       if (error.response.status === 403) {
-        setPasswordError('Invalid password');
+        setPasswordError('Invalid email or password');
       } else if (error.response.status === 400) {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('email')) {
@@ -63,7 +63,6 @@ const Login = () => {
   };
 
   const validateEmail = (input) => {
-    // Regular expression for email validation
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailRegex.test(input)) {
       setEmailError('Invalid email format');

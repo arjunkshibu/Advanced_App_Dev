@@ -54,12 +54,11 @@ public class SecurityConfig {
                         "/api/web/sites/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html/**",
-                        "/api/admin/default",
                         "/v3/api-docs/**",
                         "/api/courses/**",
                         "/api/purchased-courses/**",
                         "/api/favourites/**",
-                        "/users/**"
+                        "/api/admin/default"
         };
 
         @Bean
@@ -69,7 +68,7 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .authorizeHttpRequests(
                                                 authorize -> authorize.requestMatchers(PublicEndPoints).permitAll()
-                                                .requestMatchers("/onlyadmin/**")
+                                                .requestMatchers("/onlyadmin/**","/users/**")
                                                 .hasRole(Admin.name())
                                                 .anyRequest()
                                                 .authenticated())

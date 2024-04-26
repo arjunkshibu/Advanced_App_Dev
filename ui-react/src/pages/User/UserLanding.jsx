@@ -122,7 +122,7 @@ const UserLanding = () => {
         </div>
         <div className="flex flex-col flex-1 mt-8 mx-auto overflow-y-auto"> 
           <h2 className="text-3xl mt-20 font-semibold mb-4 text-center">Explore our courses</h2>
-          <div className="grid grid-cols-4 gap-4 p-4">
+          <div className="grid grid-cols-4 font-sans gap-4 p-4">
             {courses.map(course => (
               <div key={course.id} className="border-2 text-center bg-white border-gray-300 rounded-md p-4 h-96">
                 <img src={course.courseImgUrl} alt={course.courseName} className=" border border-white w-full mb-2 h-[180px]" />
@@ -140,7 +140,7 @@ const UserLanding = () => {
                     <span className="text-2xl mb-1 mt-3 text-green-600">Purchased</span>
                   ) : (
                     <button
-                      className={`text-2xl mb-1 mt-3 border px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`}
+                      className={`text-2xl mb-1 mt-3 border rounded-md px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`}
                       onClick={() => handlePayment(course.coursePrice, course.courseId)} // Pass course.coursePrice and courseId as arguments
                     >
                       <span className="mr-1">$</span>{course.coursePrice}
