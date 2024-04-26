@@ -5,6 +5,7 @@ import UserSidebar from '../../components/User/UserSideBar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { razorpayconfig, testuserconfig } from '../../services';
+import { BadgeCheck } from 'lucide-react';
 
 const UserLanding = () => {
   const [courses, setCourses] = useState([]);
@@ -135,9 +136,13 @@ const UserLanding = () => {
                 </h3>
                 <p className="text-base mb-1">Instructor: {course.courseInstructor}</p>
                 <p className="text-base mb-1"> {course.courseDuration}</p>
+                <div className="flex justify-center font-semibold text-green-700 items-center">
+                  <BadgeCheck />
+                  <p className="ml-1">Professional Certification</p>
+                </div>
                 <div className="flex items-center justify-center">
                   {purchasedCourses.some(pCourse => pCourse.courseId === course.courseId) ? (
-                    <span className="text-2xl mb-1 mt-3 text-green-600">Purchased</span>
+                    <span className="text-2xl mb-1 mt-3 bg-green-200 w-full text-green-600">Purchased</span>
                   ) : (
                     <button
                       className={`text-2xl mb-1 mt-3 border rounded-md px-4 ${course.coursePrice === 0 ? 'bg-green-500' : 'bg-blue-600'} text-white flex items-center`}

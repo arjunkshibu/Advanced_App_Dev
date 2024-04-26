@@ -8,27 +8,32 @@ const UserFavourites = () => {
   useEffect(() => {
     const fetchFavourites = async () => {
       try {
-        // Fetch favourite courses for the current user
         const favouriteCoursesResponse = await axiosInstance.get('http://localhost:8080/api/favourites/getAll');
         const fetchedFavouriteCourses = favouriteCoursesResponse.data;
 
-        // Get the user ID from localStorage
         const localUserId = localStorage.getItem('userId');
 
-        // Filter favourite courses for the current user
         const userFavouriteCourses = fetchedFavouriteCourses.filter(course => course.userId == localUserId);
 
-        // Extract course IDs
         const courseIds = userFavouriteCourses.map(course => course.courseId);
 
-        // Fetch course details for each course ID
         const coursesData = await Promise.all(courseIds.map(async courseId => {
           const courseResponse = await axiosInstance.get(`http://localhost:8080/api/courses/${courseId}`);
           return courseResponse.data;
         }));
 
+        // Filter out duplicate courses based on IDs
+        const uniqueCoursesData = [];
+        const courseIdSet = new Set();
+        coursesData.forEach(course => {
+          if (!courseIdSet.has(course.courseId)) {
+            uniqueCoursesData.push(course);
+            courseIdSet.add(course.courseId);
+          }
+        });
+
         // Filter out courses with missing or undefined values for any required field
-        const filteredCoursesData = coursesData.filter(course => 
+        const filteredCoursesData = uniqueCoursesData.filter(course => 
           course.courseName && 
           course.courseInstructor && 
           course.courseDuration &&

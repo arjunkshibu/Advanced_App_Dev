@@ -65,12 +65,20 @@ function AdminCourses() {
     });
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, actionType) => {
     const { name, value } = e.target;
-    setUpdatedCourse((prevCourse) => ({
-      ...prevCourse,
-      [name]: value,
-    }));
+    
+    if (actionType === 'update') {
+      setUpdatedCourse((prevCourse) => ({
+        ...prevCourse,
+        [name]: value,
+      }));
+    } else if (actionType === 'add') {
+      setNewCourse((prevCourse) => ({
+        ...prevCourse,
+        [name]: value,
+      }));
+    }
   };
   
   const handleUpdate = async () => {
@@ -146,15 +154,15 @@ function AdminCourses() {
             <div className="relative bg-white rounded-lg p-8 w-1/3">
               <h2 className="text-2xl font-bold mb-4">Update Course</h2>
               <label className="block mb-2">Name:</label>
-              <input type="text" name="courseName" value={updatedCourse.courseName} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseName" value={updatedCourse.courseName} onChange={(e) => handleInputChange(e, 'update')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Instructor:</label>
-              <input type="text" name="courseInstructor" value={updatedCourse.courseInstructor} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseInstructor" value={updatedCourse.courseInstructor} onChange={(e) => handleInputChange(e, 'update')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Duration:</label>
-              <input type="text" name="courseDuration" value={updatedCourse.courseDuration} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseDuration" value={updatedCourse.courseDuration} onChange={(e) => handleInputChange(e, 'update')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Price:</label>
-              <input type="text" name="coursePrice" value={updatedCourse.coursePrice} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="coursePrice" value={updatedCourse.coursePrice} onChange={(e) => handleInputChange(e, 'update')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Image URL:</label>
-              <input type="text" name="courseImgUrl" value={updatedCourse.courseImgUrl} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseImgUrl" value={updatedCourse.courseImgUrl} onChange={(e) => handleInputChange(e, 'update')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <div className="flex justify-end">
                 <button onClick={handleUpdate} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
                 <button onClick={handleCloseModal} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2">Cancel</button>
@@ -169,15 +177,15 @@ function AdminCourses() {
             <div className="relative bg-white rounded-lg p-8 w-1/3">
               <h2 className="text-2xl font-bold mb-4">Add Course</h2>
               <label className="block mb-2">Name:</label>
-              <input type="text" name="courseName" value={newCourse.courseName} onChange={(e) => handleInputChange(e, 'new')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseName" value={newCourse.courseName} onChange={(e) => handleInputChange(e, 'add')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Instructor:</label>
-              <input type="text" name="courseInstructor" value={newCourse.courseInstructor} onChange={(e) => handleInputChange(e, 'new')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseInstructor" value={newCourse.courseInstructor} onChange={(e) => handleInputChange(e, 'add')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Duration:</label>
-              <input type="text" name="courseDuration" value={newCourse.courseDuration} onChange={(e) => handleInputChange(e, 'new')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseDuration" value={newCourse.courseDuration} onChange={(e) => handleInputChange(e, 'add')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Price:</label>
-              <input type="text" name="coursePrice" value={newCourse.coursePrice} onChange={(e) => handleInputChange(e, 'new')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="coursePrice" value={newCourse.coursePrice} onChange={(e) => handleInputChange(e, 'add')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <label className="block mb-2">Image URL:</label>
-              <input type="text" name="courseImgUrl" value={newCourse.courseImgUrl} onChange={(e) => handleInputChange(e, 'new')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
+              <input type="text" name="courseImgUrl" value={newCourse.courseImgUrl} onChange={(e) => handleInputChange(e, 'add')} className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4" />
               <div className="flex justify-end">
                 <button onClick={handleAddCourse} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add</button>
                 <button onClick={handleCloseModal} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2">Cancel</button>
