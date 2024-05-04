@@ -23,7 +23,7 @@ const UserLanding = () => {
 
     const fetchCourses = async () => {
       try {
-        const response = await axiosInstance.get('http://localhost:8080/api/courses/getAll');
+        const response = await axiosInstance.get('http://13.202.60.200:8080/api/courses/getAll');
         setCourses(response.data); 
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -49,7 +49,7 @@ const UserLanding = () => {
       const userId = localStorage.getItem('userId');
       if (userId) {
         try {
-          const response = await axiosInstance.get(`http://localhost:8080/api/purchased-courses/${userId}`);
+          const response = await axiosInstance.get(`http://13.202.60.200:8080/api/purchased-courses/${userId}`);
           setPurchasedCourses(response.data);
         } catch (error) {
           console.error('Error fetching purchased courses:', error);
@@ -63,8 +63,8 @@ const UserLanding = () => {
   const handlePaymentSuccess = async (courseId, userId) => {
     try {
       // Send a request to the backend to add the purchased course
-      await axiosInstance.post('http://localhost:8080/api/purchased-courses/add', { courseId, userId });
-      const response = await axiosInstance.get('http://localhost:8080/api/courses/getAll');
+      await axiosInstance.post('http://13.202.60.200:8080/api/purchased-courses/add', { courseId, userId });
+      const response = await axiosInstance.get('http://13.202.60.200:8080/api/courses/getAll');
       setCourses(response.data);
       const filteredCourses = courses.filter(course => !purchasedCourses.find(pCourse => pCourse.courseId === course.courseId));
       setCourses(filteredCourses);

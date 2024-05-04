@@ -14,7 +14,7 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        "http://13.202.60.200:8080/api/auth/register",
         {
           name,
           email,

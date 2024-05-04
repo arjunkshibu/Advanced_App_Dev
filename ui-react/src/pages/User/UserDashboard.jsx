@@ -10,7 +10,7 @@ function UserDashboard() {
       try {
         // Fetch purchased courses for the current user
         const purchasedCoursesResponse = await axiosInstance.get(
-          "http://localhost:8080/api/purchased-courses/getAll"
+          "http://13.202.60.200:8080/api/purchased-courses/getAll"
         );
         const purchasedCourses = purchasedCoursesResponse.data;
 
@@ -29,7 +29,7 @@ function UserDashboard() {
         const coursesData = await Promise.all(
           courseIds.map(async (courseId) => {
             const courseResponse = await axiosInstance.get(
-              `http://localhost:8080/api/courses/${courseId}`
+              `http://13.202.60.200:8080/api/courses/${courseId}`
             );
             return courseResponse.data;
           })
@@ -47,7 +47,7 @@ function UserDashboard() {
   const handleAddToFavorites = async (courseId) => {
     try {
       const localUserId = localStorage.getItem("userId");
-      await axiosInstance.post("http://localhost:8080/api/favourites/add", {
+      await axiosInstance.post("http://13.202.60.200:8080/api/favourites/add", {
         userId: localUserId,
         courseId,
       });

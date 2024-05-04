@@ -27,7 +27,7 @@ function AdminCourses() {
 
   const fetchCourses = async () => {
     try {
-      const response = await axiosInstance.get('http://localhost:8080/api/courses/getAll');
+      const response = await axiosInstance.get('http://13.202.60.200:8080/api/courses/getAll');
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -36,7 +36,7 @@ function AdminCourses() {
 
   const deleteCourse = async (id) => {
     try {
-      await axiosInstance.delete(`http://localhost:8080/api/courses/deletecourses/${id}`);
+      await axiosInstance.delete(`http://13.202.60.200:8080/api/courses/deletecourses/${id}`);
       await fetchCourses();
     } catch (error) {
       console.error('Error deleting course:', error);
@@ -83,7 +83,7 @@ function AdminCourses() {
   
   const handleUpdate = async () => {
     try {
-      const response = await axiosInstance.put(`http://localhost:8080/api/courses/putcourses/${updatedCourse.courseId}`, updatedCourse);
+      const response = await axiosInstance.put(`http://13.202.60.200:8080/api/courses/putcourses/${updatedCourse.courseId}`, updatedCourse);
       console.log('Course updated:', response.data);
       handleCloseModal(); // Close the modal after successful update
       fetchCourses(); // Fetch courses again after update
@@ -94,7 +94,7 @@ function AdminCourses() {
 
   const handleAddCourse = async () => {
     try {
-      const response = await axiosInstance.post('http://localhost:8080/api/courses/post', newCourse);
+      const response = await axiosInstance.post('http://13.202.60.200:8080/api/courses/post', newCourse);
       console.log('Course added:', response.data);
       handleCloseModal(); // Close the modal after successful addition
       fetchCourses(); // Fetch courses again after addition

@@ -14,7 +14,7 @@ const UsersTable = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axiosInstance.get('http://localhost:8080/users/getUsers');
+      const response = await axiosInstance.get('http://13.202.60.200:8080/users/getUsers');
       console.log(response)
       setUsers(response.data);
     } catch (error) {
@@ -27,7 +27,7 @@ const UsersTable = () => {
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axiosInstance.delete(`http://localhost:8080/users/deleteUser?userId=${id}`);
+        await axiosInstance.delete(`http://13.202.60.200:8080/users/deleteUser?userId=${id}`);
         toast.custom((t) => (
           <div
             className={`${

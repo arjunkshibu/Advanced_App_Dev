@@ -8,7 +8,7 @@ const UserFavourites = () => {
   useEffect(() => {
     const fetchFavourites = async () => {
       try {
-        const favouriteCoursesResponse = await axiosInstance.get('http://localhost:8080/api/favourites/getAll');
+        const favouriteCoursesResponse = await axiosInstance.get('http://13.202.60.200:8080/api/favourites/getAll');
         const fetchedFavouriteCourses = favouriteCoursesResponse.data;
 
         const localUserId = localStorage.getItem('userId');
@@ -18,7 +18,7 @@ const UserFavourites = () => {
         const courseIds = userFavouriteCourses.map(course => course.courseId);
 
         const coursesData = await Promise.all(courseIds.map(async courseId => {
-          const courseResponse = await axiosInstance.get(`http://localhost:8080/api/courses/${courseId}`);
+          const courseResponse = await axiosInstance.get(`http://13.202.60.200:8080/api/courses/${courseId}`);
           return courseResponse.data;
         }));
 

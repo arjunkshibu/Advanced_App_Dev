@@ -83,7 +83,7 @@ public class SecurityConfig {
         public CorsConfigurationSource corsConfigurationSource() {
             CorsConfiguration corsConfiguration = new CorsConfiguration();
             // Replace "http://localhost:your-swagger-ui-port" with the actual origin of your Swagger UI application
-            corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // Remove the ** wildcard
+            corsConfiguration.setAllowedOrigins(Arrays.asList("http://13.202.60.200")); // Remove the ** wildcard
             corsConfiguration.setAllowedHeaders(Arrays.asList(AUTHORIZATION, CONTENT_TYPE));
             corsConfiguration.setAllowedMethods(Arrays.asList(GET.name(), POST.name(), PUT.name(), PATCH.name(), DELETE.name(), HEAD.name(), OPTIONS.name()));
             corsConfiguration.setAllowCredentials(true);
