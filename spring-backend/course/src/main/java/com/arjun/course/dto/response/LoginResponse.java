@@ -10,10 +10,4 @@ import lombok.Data;
 public class LoginResponse {
     @Builder.Default
     private String accessToken = "";
-    private String role;
-    private Long uId;
-    private String name;
-    private String phone;
-    private String email;
-
 }

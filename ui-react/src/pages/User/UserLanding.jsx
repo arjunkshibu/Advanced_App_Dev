@@ -64,7 +64,8 @@ const UserLanding = () => {
     try {
       // Send a request to the backend to add the purchased course
       await axiosInstance.post('http://localhost:8080/api/purchased-courses/add', { courseId, userId });
-      // Reload the list of courses to update the UI
+      const response = await axiosInstance.get('http://localhost:8080/api/courses/getAll');
+      setCourses(response.data);
       const filteredCourses = courses.filter(course => !purchasedCourses.find(pCourse => pCourse.courseId === course.courseId));
       setCourses(filteredCourses);
     } catch (error) {
@@ -72,9 +73,26 @@ const UserLanding = () => {
     }
   };
 
-  const handlePayment = (coursePrice, courseId) => {
+  const handlePayment = async (coursePrice, courseId) => {
+    // Check if the course is free
+    if (coursePrice === 0) {
+      // Get userId from localStorage
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        console.error('User ID not found in localStorage');
+        return;
+      }
+      try {
+        // Call function to add purchased course to the backend directly
+        await handlePaymentSuccess(courseId, userId);
+      } catch (error) {
+        console.error('Error adding purchased course:', error);
+      }
+      return; // Exit the function since the course is free
+    }
     
-    console.log(courseId);
+    // If the course is not free, proceed with Razorpay payment
+    // Otherwise, the function will exit early and not reach this point
     const amountInPaise = Math.round(coursePrice * usdToInrRate * 100);
     const options = {
       key: razorpayconfig.key,
@@ -159,6 +177,6 @@ const UserLanding = () => {
       </div>
     </div>
   );
-  
-  }  
+};
+
 export default UserLanding;

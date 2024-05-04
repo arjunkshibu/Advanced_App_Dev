@@ -24,6 +24,7 @@
     "axios": "^1.6.8",
     "hamburger-react": "^2.5.0",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.358.0",
     "npm": "^10.5.0",
     "react": "^18.2.0",

@@ -44,16 +44,11 @@ public class JwtToken {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        // Extracting the role from UserDetails
-        String role = userDetails.getAuthorities().stream()
-        .filter(authority -> authority.getAuthority().startsWith("ROLE_"))
-        .map(authority -> authority.getAuthority().substring(5)) // Remove "ROLE_" prefix
-        .findFirst()
-        .orElse("");
-        
-        // Adding role to extraClaims
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, String username, String role, String name, String phone, Long uId) {
         extraClaims.put("role", role);
+    extraClaims.put("name", name);
+    extraClaims.put("phone", phone);
+    extraClaims.put("uId", uId);
         
         // Building the token with extraClaims
         return buildToken(extraClaims, userDetails, Duration);

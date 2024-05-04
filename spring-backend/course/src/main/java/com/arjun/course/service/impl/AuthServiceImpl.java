@@ -57,22 +57,11 @@ public LoginResponse login(LoginRequest loginRequest) {
     var user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
     
     Map<String, Object> extraClaims = new HashMap<>();
-    var accessToken = jwtUtil.generateToken(extraClaims, user);
-    String role = user.getRole().toString();
-    Long userId = user.getUid();
-    String name = user.getName();
-    String phone = user.getPhone();
-    String email = user.getEmail();
+    var accessToken = jwtUtil.generateToken(extraClaims,user, user.getEmail(), user.getRole().toString(), user.getName(), user.getPhone(), user.getUid());
     revokeAllUserTokens(user);
     saveUserToken(user, accessToken);
-    
     return LoginResponse.builder()
     .accessToken(accessToken)
-    .role(role)
-    .uId(userId)
-    .name(name)
-    .phone(phone)
-    .email(email)
     .build();
 }
 

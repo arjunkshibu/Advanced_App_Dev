@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,29 +12,26 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
+
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:8080/api/auth/login', {
         email,
         password,
       });
-      console.log('Login Response:', response);
-      console.log('Role:', response.data.role);
-
       if (response.status === 200) {
         console.log(response.data)
         const token = response.data.accessToken;
-        const uid = response.data.uid;
-        const userEmail = email;
-        const role = response.data.role;
-        const userName = response.data.name;
-        const uEmail = response.data.email;
-        const uPhone = response.data.phone;
+        const decoded = jwtDecode(token);
+        const uid = decoded.uId;
+        const role = decoded.role;
+        const userName = decoded.name;
+        const uEmail = decoded.sub;
+        const uPhone = decoded.phone;
 
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userId',uid);
         localStorage.setItem('role', role);
-        localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('authToken', token);
         localStorage.setItem('uName', userName);
         localStorage.setItem('uEmail', uEmail);
